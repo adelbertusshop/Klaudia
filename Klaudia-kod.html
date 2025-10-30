@@ -19,9 +19,8 @@
     header {
       background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 80px 20px 40px;
       border-bottom: 1px solid #d4af37;
-      position: relative;
     }
 
     header h1 {
@@ -29,13 +28,13 @@
       font-size: 72px;
       color: #d4af37;
       text-shadow: 0 0 10px rgba(212,175,55,0.6);
-      margin: 0 0 20px 0;
+      margin: 0;
     }
 
     header p {
       color: #f0e6b2;
       font-size: 20px;
-      margin-top: 0;
+      margin-top: 10px;
       margin-bottom: 30px;
     }
 
@@ -45,23 +44,7 @@
       border-radius: 15px;
       border: 2px solid #d4af37;
       box-shadow: 0 0 20px rgba(212,175,55,0.4);
-      margin: 0 auto;
-      display: block;
-    }
-
-    .image-placeholder {
-      width: 300px;
-      height: 200px;
-      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
-      border-radius: 15px;
-      border: 2px solid #d4af37;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #d4af37;
-      font-size: 16px;
-      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+      margin: 20px auto;
     }
 
     section {
@@ -249,13 +232,8 @@
     <h1>Klaudia</h1>
     <p>Salon stylizacji rzęs</p>
     
-    <!-- Miejsce na Twoje zdjęcie -->
-    <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia - stylizacja rzęs" class="header-image" onerror="this.style.display='none'; document.getElementById('image-placeholder').style.display='flex';">
-    
-    <!-- Awaryjny placeholder jeśli zdjęcie się nie załaduje -->
-    <div id="image-placeholder" class="image-placeholder" style="display: none;">
-      Zdjęcie salonu<br>VASHARA
-    </div>
+    <!-- Twoje zdjęcie -->
+    <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia" class="header-image">
   </header>
 
   <section>
