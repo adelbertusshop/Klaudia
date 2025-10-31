@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    /* ---------- Twoj oryginalny styl (niezmieniony) ---------- */
+    /* ---------- Twój oryginalny styl (niezmieniony) ---------- */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -26,13 +26,9 @@
       border-bottom: 1px solid #d4af37;
     }
 
-    .intro-section h1 { /* Zmieniono selektor */
-      font-family: 'Great Vibes', cursive;
-      font-size: 72px;
-      color: #d4af37;
-      text-shadow: 0 0 10px rgba(212,175,55,0.6);
-      margin: 0;
-      display: none; /* Ukrywamy, bo już jest w banerze */
+    /* Ukrywamy oryginalny nagłówek h1, bo już jest w banerze z animacją */
+    .intro-section h1 {
+      display: none;
     }
 
     .intro-section p { /* Zmieniono selektor */
@@ -315,7 +311,7 @@
       border: 2px solid #d4af37;
       box-shadow: 0 6px 20px rgba(212,175,55,0.3);
       transition: transform .25s ease;
-      loading="lazy"; /* Dodane lazy loading */
+      /* removed loading="lazy" from inline style as it's an HTML attribute not CSS property */
     }
     .reviews-gallery img:hover { transform: scale(1.03); }
 
@@ -353,7 +349,6 @@
       border-bottom: 2px solid #d4af37;
     }
 
-
     @media (max-width: 768px) {
       .klaudia-glow { font-size: 2.5rem; }
       .reviews-gallery img { height: 180px; }
@@ -367,7 +362,6 @@
       .review-grid { grid-template-columns: 1fr; }
       .photo-grid { grid-template-columns: 1fr; }
     }
-
   </style>
 </head>
 <body>
@@ -472,7 +466,7 @@
           <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" onclick="sendEmail()">Wyślij rezerwację</button>
+        <button type="submit" class="submit-btn">Wyślij rezerwację</button>
 
         <div class="success-message" id="success-message">
           Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
@@ -515,9 +509,9 @@
   </footer>
 
   <script>
-    /* ---------- Oryginalny kod wysyłki (bez zmian) ---------- */
-    function sendEmail() {
-      event.preventDefault();
+    /* ---------- Oryginalny kod wysyłki (z poprawką na zdarzenie submit) ---------- */
+    document.getElementById('reservation-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Zapobiega domyślnej wysyłce formularza
 
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
@@ -535,8 +529,7 @@
       if (success) success.style.display = 'block';
       const form = document.getElementById('reservation-form');
       if (form) form.reset();
-    }
-    document.getElementById('reservation-form').addEventListener('submit', function(event) { sendEmail(); });
+    });
 
     /* ---------- DODANE: rotacja opinii co 12 godzin (synchronizowana z zegarem) ---------- */
     (function() {
