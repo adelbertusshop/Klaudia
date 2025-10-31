@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    /* ---------- Twój oryginalny styl (niezmieniony) ---------- */
+    /* ---------- Twoj oryginalny styl (niezmieniony) ---------- */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -17,22 +18,24 @@
       overflow-x: hidden;
     }
 
-    header {
+    /* Zmieniony nagłówek - teraz to raczej sekcja "O nas" */
+    .intro-section { /* Zmieniono selektor z header na intro-section */
       background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
       text-align: center;
       padding: 80px 20px 40px;
       border-bottom: 1px solid #d4af37;
     }
 
-    header h1 {
+    .intro-section h1 { /* Zmieniono selektor */
       font-family: 'Great Vibes', cursive;
       font-size: 72px;
       color: #d4af37;
       text-shadow: 0 0 10px rgba(212,175,55,0.6);
       margin: 0;
+      display: none; /* Ukrywamy, bo już jest w banerze */
     }
 
-    header p {
+    .intro-section p { /* Zmieniono selektor */
       color: #f0e6b2;
       font-size: 20px;
       margin-top: 10px;
@@ -228,7 +231,7 @@
     }
 
     .review-card::before {
-      content: "";
+      content: ""; /* Można dodać symbol cudzysłowu, np. "\201C" */
       font-size: 100px;
       color: #d4af37;
       position: absolute;
@@ -273,7 +276,7 @@
     .fade-in-banner { opacity: 0; animation: fadeInBanner 1.8s ease-out forwards; }
     @keyframes fadeInBanner {
       from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to  { opacity: 1; transform: translateY(0); }
     }
 
     /* Baner */
@@ -312,37 +315,84 @@
       border: 2px solid #d4af37;
       box-shadow: 0 6px 20px rgba(212,175,55,0.3);
       transition: transform .25s ease;
+      loading="lazy"; /* Dodane lazy loading */
     }
     .reviews-gallery img:hover { transform: scale(1.03); }
+
+    /* Nowy styl dla nawigacji */
+    nav {
+      background-color: #111;
+      padding: 15px 20px;
+      text-align: center;
+      border-bottom: 1px solid #d4af37;
+      position: sticky; /* Przyklejona nawigacja */
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #f0e6b2;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 5px 0;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+      border-bottom: 2px solid #d4af37;
+    }
+
 
     @media (max-width: 768px) {
       .klaudia-glow { font-size: 2.5rem; }
       .reviews-gallery img { height: 180px; }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .intro-section p { font-size: 16px; }
+      h2 { font-size: 32px; }
+      .about { font-size: 16px; }
+      .review-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
     }
 
   </style>
 </head>
 <body>
 
-  <!-- ========== DODANE: BANER NA SAMEJ GÓRZE ========== -->
   <section class="hero-banner fade-in-banner" aria-hidden="false">
-    <img id="banner-claudia" src="assets/img/baner_klaudia.jpg" alt="Klaudia – Modelowanie rzęs (baner)" onerror="this.style.display='none'">
+    <img id="banner-claudia" src="assets/img/baner_klaudia.jpg" alt="Klaudia – Modelowanie rzęs (baner)" loading="lazy" onerror="this.style.display='none'">
     <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
       <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
     </div>
   </section>
-  <!-- ========== KONIEC BANERA ========== -->
-
-  <!-- Twój oryginalny header (bez zmian) -->
-  <header>
-    <h1>Klaudia</h1>
+  <nav>
+    <ul>
+      <li><a href="#about-us">O nas</a></li>
+      <li><a href="#gallery">Galeria</a></li>
+      <li><a href="#booking-form">Rezerwacja</a></li>
+      <li><a href="#reviews">Opinie</a></li>
+    </ul>
+  </nav>
+  <section class="intro-section" id="about-us">
+    <div class="gold-line"></div>
     <p>Salon stylizacji rzęs</p>
 
-    <!-- Zdjęcie główne (oryginalne) -->
-    <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia" class="header-image" onerror="this.style.display='none'">
-  </header>
+    <img src="assets/img/profilowe_klaudia.jpg" alt="Zdjęcie profilowe Klaudii" class="header-image" loading="lazy" onerror="this.style.display='none'">
+  </section>
 
-  <!-- Oryginalna sekcja 'Piękno w każdym spojrzeniu' (bez zmian) -->
   <section>
     <div class="gold-line"></div>
     <h2>Piękno w każdym spojrzeniu ✨</h2>
@@ -359,29 +409,27 @@
     </div>
   </section>
 
-  <!-- Oryginalna galeria zdjęć (bez zmian) -->
-  <section class="photo-gallery">
+  <section class="photo-gallery" id="gallery">
     <div class="gallery-container">
       <div class="gold-line"></div>
       <h2>Nasze Realizacje</h2>
       <div class="photo-grid">
         <div class="photo-item">
-          <img src="Messenger_creation_37AC1E27-F14F-4B20-8AE7-FFB06FDEAB40.jpeg" alt="Stylizacja rzęs 1" onerror="this.parentElement.innerHTML='LASHARA<br>Zdjęcie 1'">
+          <img src="assets/img/realizacje_1.jpg" alt="Stylizacja rzęs - efekt objętości" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 1<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Stylizacja rzęs 2" onerror="this.parentElement.innerHTML='VASHARA<br>Zdjęcie 2'">
+          <img src="assets/img/realizacje_2.jpg" alt="Stylizacja rzęs - rzęsy kocie oko" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 2<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <div>Twoje kolejne zdjęcie</div>
+          <img src="assets/img/realizacje_3.jpg" alt="Stylizacja rzęs - styl klasyczny" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 3<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <div>Twoje kolejne zdjęcie</div>
+          <img src="assets/img/realizacje_4.jpg" alt="Stylizacja rzęs - mega volume" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 4<br> (brak pliku)</div>'">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Oryginalny formularz rezerwacji (bez zmian) -->
   <section class="booking-form" id="booking-form">
     <div class="form-container">
       <div class="gold-line"></div>
@@ -433,15 +481,12 @@
     </div>
   </section>
 
-  <!-- ========== OPINIE (ORYGINALNE KARTY) ========== -->
-  <section class="reviews-section">
+  <section class="reviews-section" id="reviews">
     <div class="reviews-container">
       <div class="gold-line"></div>
       <h2>Opinie naszych klientek</h2>
 
-      <!-- Tu wstawiamy dynamicznie zawartość opinii (rotacja co 12h) -->
       <div id="review-grid" class="review-grid">
-        <!-- Defaultowe trzy karty (zostaną zastąpione przez JS) -->
         <div class="review-card">
           <div class="review-text">Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt jest naturalny, a zarazem magiczny. Mój mąż nie mógł oderwać ode mnie wzroku! Prawdziwa artystka.</div>
           <div><div class="review-author">Anna, 28 lat</div><div class="review-rating">★★★★★</div></div>
@@ -456,16 +501,13 @@
         </div>
       </div>
 
-      <!-- ========== DODANE: GALERIA ZDJĘĆ POD KARTAMI OPINII ========== -->
       <div class="reviews-gallery" aria-hidden="false">
-        <img src="assets/img/photo1.jpg" alt="Stylizacja rzęs - photo1" onerror="this.style.display='none'">
-        <img src="assets/img/photo2.jpg" alt="Stylizacja rzęs - photo2" onerror="this.style.display='none'">
-        <img src="assets/img/photo3.jpg" alt="Stylizacja rzęs - photo3" onerror="this.style.display='none'">
-        <img src="assets/img/photo4.jpg" alt="Stylizacja rzęs - photo4" onerror="this.style.display='none'">
+        <img src="assets/img/recenzje_1.jpg" alt="Stylizacja rzęs - recenzja 1" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/img/recenzje_2.jpg" alt="Stylizacja rzęs - recenzja 2" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/img/recenzje_3.jpg" alt="Stylizacja rzęs - recenzja 3" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/img/recenzje_4.jpg" alt="Stylizacja rzęs - recenzja 4" loading="lazy" onerror="this.style.display='none'">
       </div>
-      <!-- ========== KONIEC GALERII ========== -->
-
-    </div>
+      </div>
   </section>
 
   <footer>
@@ -498,7 +540,6 @@
 
     /* ---------- DODANE: rotacja opinii co 12 godzin (synchronizowana z zegarem) ---------- */
     (function() {
-      // Tablice zestawów opinii (możesz edytować treści poniżej)
       const reviewSets = [
         [
           { text: "Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt naturalny i magiczny.", author: "Anna, 28 lat", rating: "★★★★★" },
@@ -527,22 +568,19 @@
           const card = document.createElement('div');
           card.className = 'review-card';
           card.innerHTML = `<div class="review-text">${item.text}</div>
-                            <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
+                              <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
           reviewGrid.appendChild(card);
         });
       }
 
-      // Wyznacz index zestawu w zależności od czasu: co 12 godzin zmiana
       function getCurrentSetIndex() {
         const msPer12h = 12 * 60 * 60 * 1000;
         const index = Math.floor(Date.now() / msPer12h) % reviewSets.length;
         return index;
       }
 
-      // Ustaw początkowo i zaktualizuj przy starcie
       function initRotation() {
         renderSet( getCurrentSetIndex() );
-        // Dla bezpieczeństwa, ustaw interwał, który co godzinę sprawdza czy trzeba zmienić (nie czekamy full 12h w JS)
         setInterval(() => {
           renderSet( getCurrentSetIndex() );
         }, 60 * 60 * 1000); // co godzinę sprawdzamy, czy nadszedł nowy okres 12h
