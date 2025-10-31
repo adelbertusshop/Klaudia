@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -9,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- Twój oryginalny styl (niezmieniony) ---------- */
+    /* ---------- Twoj oryginalny styl (niezmieniony) ---------- */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -92,7 +93,7 @@
       transform: scale(1.05);
     }
 
-    /* Style dla formularza - ZAAWANSOWANE ZMIANY WIZUALNE */
+    /* Style dla formularza - ZAAWANSOWANE ZMIANY WIZUALNE I UKŁADU */
     .booking-form {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -118,6 +119,7 @@
         to { background-position: 200% 100%; } /* Poruszaj w dwóch kierunkach */
     }
 
+
     .form-container {
       max-width: 600px;
       margin: 0 auto;
@@ -128,6 +130,23 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212,175,55,0.4);
       position: relative; /* Aby formularz był nad tłem */
       z-index: 10;
+    }
+
+    /* NOWY UKŁAD FORMULARZA */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Dwie kolumny */
+        gap: 20px; /* Odstęp między polami */
+        margin-bottom: 25px; /* Odstęp przed textarea/przyciskiem */
+    }
+
+    .form-grid .form-group {
+        margin-bottom: 0; /* Zerujemy marginesy dla elementów w siatce */
+    }
+
+    /* Aby niektóre pola zajmowały całą szerokość */
+    .form-group.full-width {
+        grid-column: 1 / -1; /* Zajmuje całą szerokość siatki */
     }
 
     .form-group {
@@ -249,11 +268,6 @@
     .message.success {
       background-color: #d4af37; /* Złoty kolor dla sukcesu */
       color: #000;
-    }
-
-    .message.error {
-      background-color: #dc3545; /* Czerwony dla błędu */
-      color: #fff;
     }
 
     @keyframes fadeInSlideUp {
@@ -401,32 +415,8 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: goldShine 4s linear infinite;
-      pointer-events: none;
     }
     @keyframes goldShine { 0%{background-position:0% 50%}100%{background-position:100% 50%} }
-
-    /* Dodatkowy subtelny przesuwający się błysk na banerze */
-    .banner-shine {
-      position: absolute;
-      top: -30%;
-      left: -30%;
-      width: 60%;
-      height: 160%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.0) 100%);
-      transform: rotate(-20deg);
-      filter: blur(18px);
-      opacity: 0.0;
-      transition: opacity 0.6s ease;
-      animation: shineMove 4s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes shineMove {
-      0% { left: -40%; opacity: 0; }
-      10% { opacity: 0.3; }
-      50% { left: 80%; opacity: 0.18; }
-      90% { opacity: 0.0; }
-      100% { left: 120%; opacity: 0; }
-    }
 
     /* Galeria opinii (pod kartami opinii) */
     .reviews-gallery {
@@ -507,6 +497,15 @@
       .photo-grid { grid-template-columns: 1fr; }
       .form-container { padding: 30px; }
       .submit-btn { padding: 12px; font-size: 16px; }
+
+      /* Responsywność dla nowego układu formularza - jedna kolumna */
+      .form-grid {
+          grid-template-columns: 1fr;
+          gap: 0; /* Zerujemy odstęp, bo pola mają własny margin-bottom */
+      }
+      .form-grid .form-group {
+          margin-bottom: 25px; /* Przywracamy odstęp między polami */
+      }
     }
 
     @media (max-width: 480px) {
@@ -530,16 +529,12 @@
 </head>
 <body>
 
-  <!-- ========== DODANE: BANER NA SAMEJ GÓRZE ========== -->
   <section class="hero-banner fade-in-banner" aria-hidden="false">
     <img id="banner-claudia" src="assets/img/baner_klaudia.jpg" alt="Klaudia – Modelowanie rzęs (baner)" loading="lazy" onerror="this.style.display='none'">
-    <div class="banner-shine" aria-hidden="true"></div>
     <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
       <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
     </div>
   </section>
-  <!-- ========== KONIEC BANERA ========== -->
-
   <nav>
     <ul>
       <li><a href="#about-us">O nas</a></li>
@@ -548,7 +543,6 @@
       <li><a href="#reviews">Opinie</a></li>
     </ul>
   </nav>
-
   <section class="intro-section" id="about-us">
     <div class="gold-line"></div>
     <p>Salon stylizacji rzęs</p>
@@ -598,16 +592,17 @@
       <div class="gold-line"></div>
       <h2>Zarezerwuj Wizytę</h2>
       <form id="reservation-form">
-        <div class="form-group">
-          <label for="name">Imię i nazwisko *</label>
-          <i class="fas fa-user"></i> <input type="text" id="name" name="name" required>
-        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko *</label>
+                <i class="fas fa-user"></i> <input type="text" id="name" name="name" required>
+            </div>
 
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required>
+            </div>
         </div>
-
         <div class="form-group">
           <label for="phone">Telefon *</label>
           <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required>
@@ -652,18 +647,27 @@
       <h2>Opinie naszych klientek</h2>
 
       <div id="review-grid" class="review-grid">
-        <!-- review cards będą renderowane przez JS -->
+        <div class="review-card">
+          <div class="review-text">Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt jest naturalny, a zarazem magiczny. Mój mąż nie mógł oderwać ode mnie wzroku! Prawdziwa artystka.</div>
+          <div><div class="review-author">Anna, 28 lat</div><div class="review-rating">★★★★★</div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-text">Hipnotyzujące! To jedyne słowo które opisuje efekt. Rzęsy są lekkie, wygodne i utrzymują się perfekcyjnie. Klaudia to prawdziwa artystka - zna się na swojej pracy jak nikt inny. Polecam każdej kobiecie!</div>
+          <div><div class="review-author">Magdalena, 32 lata</div><div class="review-rating">★★★★★</div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-text">Moje oczy zyskały nowe życie! Wreszcie czuję się pewnie bez makijażu. Efekt jest tak naturalny, że wszyscy myślą, że to moje własne rzęsy, tylko w lepszej wersji. Klaudia to czarodziejka!</div>
+          <div><div class="review-author">Katarzyna, 25 lat</div><div class="review-rating">★★★★★</div></div>
+        </div>
       </div>
 
-      <!-- GALERIA ZDJĘĆ POD KARTAMI OPINII -->
       <div class="reviews-gallery" aria-hidden="false">
         <img src="assets/img/recenzje_1.jpg" alt="Stylizacja rzęs - recenzja 1" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_2.jpg" alt="Stylizacja rzęs - recenzja 2" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_3.jpg" alt="Stylizacja rzęs - recenzja 3" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_4.jpg" alt="Stylizacja rzęs - recenzja 4" loading="lazy" onerror="this.style.display='none'">
       </div>
-
-    </div>
+      </div>
   </section>
 
   <footer>
@@ -671,7 +675,7 @@
   </footer>
 
   <script>
-    /* ---------- Rotacja opinii co 12 godzin (synchronizowana z zegarem) ---------- */
+    // Rotacja opinii - kod pozostaje bez zmian
     (function() {
       const reviewSets = [
         [
@@ -701,64 +705,81 @@
           const card = document.createElement('div');
           card.className = 'review-card';
           card.innerHTML = `<div class="review-text">${item.text}</div>
-                            <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
+                              <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
           reviewGrid.appendChild(card);
         });
       }
 
       function getCurrentSetIndex() {
         const msPer12h = 12 * 60 * 60 * 1000;
-        return Math.floor(Date.now() / msPer12h) % reviewSets.length;
+        const index = Math.floor(Date.now() / msPer12h) % reviewSets.length;
+        return index;
       }
 
       function initRotation() {
         renderSet( getCurrentSetIndex() );
-        // dodatkowo co godzinę sprawdzamy, czy trzeba zmienić (nie czekamy 12h w JS)
-        setInterval(() => renderSet( getCurrentSetIndex() ), 60 * 60 * 1000);
+        setInterval(() => {
+          renderSet( getCurrentSetIndex() );
+        }, 60 * 60 * 1000); // co godzinę sprawdzamy, czy nadszedł nowy okres 12h
       }
 
       initRotation();
     })();
 
-    /* ---------- Skrypt do obsługi formularza (mailto) ---------- */
-    (function() {
-      const form = document.getElementById('reservation-form');
-      const successMessage = document.getElementById('form-success-message');
+    // Skrypt do obsługi formularza (z poprawionym formatowaniem mailto:)
+    const form = document.getElementById('reservation-form');
+    const successMessage = document.getElementById('form-success-message');
 
-      if (!form) return;
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Zapobiega domyślnej wysyłce formularza
 
-        const name = document.getElementById('name').value || '';
-        const email = document.getElementById('email').value || '';
-        const phone = document.getElementById('phone').value || '';
-        const service = document.getElementById('service').value || '';
-        const date = document.getElementById('date').value || '';
-        const message = document.getElementById('message').value || '';
+      // Ukryj poprzednie komunikaty
+      successMessage.style.display = 'none';
 
-        const subject = `Rezerwacja od: ${name}`;
-        const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const serviceElement = document.getElementById('service');
+      // Pobieramy tekst opcji, a nie value, aby był czytelny w mailu
+      const service = serviceElement.options[serviceElement.selectedIndex].text;
+      const date = document.getElementById('date').value;
+      const message = document.getElementById('message').value;
 
-        window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Budujemy treść wiadomości e-mail z użyciem %0A dla nowej linii
+      let bodyContent = `Nowa rezerwacja wizyty:\n\n`; // Używam \n, które encodeURIComponent zamieni na %0A
+      bodyContent += `Imię i nazwisko: ${name}\n`;
+      bodyContent += `Email: ${email}\n`;
+      bodyContent += `Telefon: ${phone}\n`;
+      bodyContent += `Usługa: ${service}\n`;
 
-        if (successMessage) {
-          successMessage.style.display = 'block';
-        }
-        form.reset();
-      });
-    })();
+      if (date) { // Dodaj datę tylko jeśli została wybrana
+          bodyContent += `Preferowana data: ${date}\n`;
+      }
+      if (message) { // Dodaj wiadomość tylko jeśli została wpisana
+          bodyContent += `Dodatkowe uwagi: ${message}\n`;
+      }
 
-    /* ---------- Płynne przewijanie nawigacji ---------- */
-    (function(){
-      document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          const target = document.querySelector(targetId);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
+      const subject = `Rezerwacja od: ${name}`;
+
+      // Używamy encodeURIComponent dla tematu i treści
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
+
+      // Pokaż komunikat sukcesu i zresetuj formularz po wysłaniu mailto
+      successMessage.style.display = 'block';
+      form.reset();
+    });
+
+    // Płynne przewijanie do sekcji
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
         });
       });
-    })();
+    });
+
   </script>
 </body>
 </html>
