@@ -92,8 +92,8 @@
       transform: scale(1.05);
     }
 
-    /* Style dla galerii zdjęć */
-    .photo-gallery {
+    /* Nowe style dla galerii */
+    .gallery-section {
       background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
       padding: 80px 20px;
     }
@@ -103,41 +103,59 @@
       margin: 0 auto;
     }
 
-    .photo-grid {
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
       margin-top: 50px;
     }
 
-    .photo-item {
-      position: relative;
+    .gallery-item {
+      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
       border-radius: 15px;
-      overflow: hidden;
-      border: 2px solid #d4af37;
+      padding: 30px;
+      border: 1px solid #d4af37;
       box-shadow: 0 8px 25px rgba(212,175,55,0.3);
       transition: all 0.3s ease;
-      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
-      height: 250px;
+      min-height: 200px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      color: #d4af37;
-      font-size: 18px;
     }
 
-    .photo-item:hover {
+    .gallery-item:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 35px rgba(212,175,55,0.4);
     }
 
-    .photo-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .gallery-image {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      font-size: 36px;
+      border: 2px solid #d4af37;
     }
 
-    /* Style dla opinii */
+    .gallery-title {
+      color: #f0e6b2;
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .gallery-description {
+      color: #bbb;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Nowe style dla opinii */
     .reviews-section {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -214,8 +232,8 @@
     <h1>Klaudia</h1>
     <p>Salon stylizacji rzęs</p>
     
-    <!-- Zdjęcie główne -->
-    <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia" class="header-image" onerror="this.style.display='none'">
+    <!-- Twoje zdjęcie -->
+    <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia" class="header-image">
   </header>
 
   <section>
@@ -230,33 +248,35 @@
       <p>
         Zadbaj o swój wyjątkowy wygląd – umów się na wizytę i przekonaj się, jak niewiele potrzeba, by olśniewać!
       </p>
-      <button onclick="window.location.href='https://klaudua-pearl.vercel.app'">Zarezerwuj wizytę</button>
+      <button>Zarezerwuj wizytę</button>
     </div>
   </section>
 
-  <!-- Sekcja galerii zdjęć -->
-  <section class="photo-gallery">
+  <!-- Sekcja galerii -->
+  <section class="gallery-section">
     <div class="gallery-container">
       <div class="gold-line"></div>
       <h2>Nasze Realizacje</h2>
-      <div class="photo-grid">
-        <!-- Zdjęcie 1 -->
-        <div class="photo-item">
-          <img src="Messenger_creation_37AC1E27-F14F-4B20-8AE7-FFB06FDEAB40.jpeg" alt="Stylizacja rzęs 1" onerror="this.parentElement.innerHTML='LASHARA<br>Zdjęcie 1'">
+      <div class="gallery">
+        <div class="gallery-item">
+          <div class="gallery-image">✨</div>
+          <div class="gallery-title">Styl klasyczny</div>
+          <div class="gallery-description">Naturalne przedłużenie dla codziennego eleganckiego looku. Idealne dla osób zaczynających przygodę z rzęsami.</div>
         </div>
-        
-        <!-- Zdjęcie 2 -->
-        <div class="photo-item">
-          <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Stylizacja rzęs 2" onerror="this.parentElement.innerHTML='VASHARA<br>Zdjęcie 2'">
+        <div class="gallery-item">
+          <div class="gallery-image">🌟</div>
+          <div class="gallery-title">Efekt objętości</div>
+          <div class="gallery-description">Spektakularna gęstość dla hipnotyzującego spojrzenia. Dla tych, którzy kochają dramatyczne efekty.</div>
         </div>
-        
-        <!-- Dodatkowe miejsce na zdjęcia -->
-        <div class="photo-item">
-          <div>Twoje kolejne zdjęcie</div>
+        <div class="gallery-item">
+          <div class="gallery-image">💫</div>
+          <div class="gallery-title">Rzęsy kocie oko</div>
+          <div class="gallery-description">Dramatyczny efekt wydłużenia w zewnętrznych kącikach. Tworzy uwodzicielski, migdałowy kształt oka.</div>
         </div>
-        
-        <div class="photo-item">
-          <div>Twoje kolejne zdjęcie</div>
+        <div class="gallery-item">
+          <div class="gallery-image">🔥</div>
+          <div class="gallery-title">Mega volume</div>
+          <div class="gallery-description">Maksymalna gęstość dla najodważniejszych spojrzeń. Prawdziwa rewolucja w świecie stylizacji rzęs.</div>
         </div>
       </div>
     </div>
