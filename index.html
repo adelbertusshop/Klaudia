@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* ---------- Twoj oryginalny styl (niezmieniony) ---------- */
     body {
@@ -91,11 +93,32 @@
       transform: scale(1.05);
     }
 
-    /* Style dla formularza */
+    /* Style dla formularza - ZAAWANSOWANE ZMIANY WIZUALNE */
     .booking-form {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
+      position: relative; /* dla tła animacji */
+      overflow: hidden; /* ukrycie wykraczających elementów tła */
     }
+
+    /* Dodatkowe tło - subtelne cząsteczki */
+    .booking-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle fill="%232c2c2c" cx="10" cy="10" r="1.5"/></svg>') repeat;
+      opacity: 0.1;
+      animation: backgroundPan 60s linear infinite;
+    }
+
+    @keyframes backgroundPan {
+        from { background-position: 0 0; }
+        to { background-position: 200% 100%; } /* Poruszaj w dwóch kierunkach */
+    }
+
 
     .form-container {
       max-width: 600px;
@@ -104,52 +127,125 @@
       padding: 40px;
       border-radius: 20px;
       border: 1px solid #d4af37;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212,175,55,0.4);
+      position: relative; /* Aby formularz był nad tłem */
+      z-index: 10;
     }
 
     .form-group {
       margin-bottom: 25px;
       text-align: left;
+      position: relative; /* dla ikon */
     }
 
     .form-group label {
       display: block;
-      color: #f0e6b2;
+      color: #d4af37; /* Złoty kolor dla etykiet */
       margin-bottom: 8px;
       font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d4af37;
+      padding: 12px 15px 12px 45px; /* Dodatkowy padding na ikonę */
+      border: 1px solid #444; /* Ciemniejsza ramka */
       border-radius: 10px;
       background: #000;
       color: #fff;
       font-size: 16px;
       box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none; /* Reset dla select na iOS */
+      -moz-appearance: none; /* Reset dla select na Firefox */
+      appearance: none; /* Reset dla select */
     }
 
     .form-group textarea {
+      padding: 12px 15px; /* Brak ikony w textarea */
       height: 100px;
       resize: vertical;
     }
+
+    /* Focus effect */
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #d4af37; /* Złota ramka na focus */
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.3);
+      outline: none;
+      background-color: #0d0d0d;
+    }
+
+    /* Stylizacja dla select, aby ukryć domyślną strzałkę */
+    .form-group select {
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d4af37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.8c-5%200-9.3%201.8-12.9%205.4-3.6%203.6-5.4%207.8-5.4%2012.9%200%205.1%201.8%209.4%205.4%2012.9l118%20118c3.6%203.6%207.8%205.4%2012.9%205.4s9.3-1.8%2012.9-5.4l118-118c3.6-3.6%205.4-7.8%205.4-12.9z%22%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-position: right 15px center; /* Ikona po prawej */
+        background-size: 12px;
+        padding-right: 45px; /* Większy padding, żeby ikona nie nachodziła na tekst */
+    }
+
+    /* Placeholder color */
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #888;
+      font-style: italic;
+    }
+
+    /* Ikony w formularzu */
+    .form-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%; /* Przesunięcie w dół, dla inputów */
+      transform: translateY(-50%);
+      color: #d4af37;
+      font-size: 18px;
+      pointer-events: none; /* Nie blokuj kliknięć na ikonę */
+      z-index: 1;
+    }
+
+    /* Dopasowanie ikon do labeli */
+    .form-group label + i {
+      top: calc(50% + 15px); /* Ikona niżej, uwzględniając label */
+    }
+
 
     .submit-btn {
       width: 100%;
       padding: 15px;
       font-size: 18px;
       margin-top: 20px;
+      background-color: #d4af37;
+      color: #000;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex; /* dla ikony w przycisku */
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
-    /* Komunikaty sukcesu/błędu - początkowo ukryte */
+    .submit-btn:hover {
+      background-color: #f0c857;
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.6);
+    }
+
+    /* Komunikaty sukcesu/błędu - początkowo ukryte, z animacją */
     .message {
       margin-top: 20px;
       padding: 10px 15px;
       border-radius: 8px;
       font-weight: bold;
       display: none; /* Ukryj domyślnie */
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInSlideUp 0.5s ease-out forwards;
     }
 
     .message.success {
@@ -160,6 +256,11 @@
     .message.error {
       background-color: #dc3545; /* Czerwony dla błędu */
       color: #fff;
+    }
+
+    @keyframes fadeInSlideUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
 
@@ -365,6 +466,9 @@
     @media (max-width: 992px) {
       .klaudia-glow { font-size: 4rem; }
       h2 { font-size: 38px; }
+      .form-group input, .form-group select { padding-left: 35px; } /* Mniejszy padding dla ikon */
+      .form-group i { left: 10px; font-size: 16px; }
+      .form-group select { background-position: right 10px center; padding-right: 35px; }
     }
 
     @media (max-width: 768px) {
@@ -393,6 +497,11 @@
       .reviews-gallery { grid-template-columns: 1fr; }
       nav { padding: 10px; }
       nav a { font-size: 16px; }
+      .form-group input, .form-group select { padding-left: 30px; font-size: 14px; }
+      .form-group i { left: 8px; font-size: 14px; }
+      .form-group label { font-size: 14px; }
+      .form-group select { background-position: right 8px center; padding-right: 30px; background-size: 10px; }
+      .submit-btn { font-size: 14px; padding: 10px; }
     }
 
   </style>
@@ -461,25 +570,25 @@
     <div class="form-container">
       <div class="gold-line"></div>
       <h2>Zarezerwuj Wizytę</h2>
-      <form id="reservation-form" action="https://formspree.io/f/YourFormspreeCode" method="POST">
+      <form id="reservation-form">
         <div class="form-group">
           <label for="name">Imię i nazwisko *</label>
-          <input type="text" id="name" name="Imię i nazwisko" required>
+          <i class="fas fa-user"></i> <input type="text" id="name" name="name" required>
         </div>
 
         <div class="form-group">
           <label for="email">Email *</label>
-          <input type="email" id="email" name="Email" required>
+          <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required>
         </div>
 
         <div class="form-group">
           <label for="phone">Telefon *</label>
-          <input type="tel" id="phone" name="Telefon" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required>
+          <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required>
         </div>
 
         <div class="form-group">
           <label for="service">Usługa *</label>
-          <select id="service" name="Usługa" required>
+          <i class="fas fa-star"></i> <select id="service" name="service" required>
             <option value="">Wybierz usługę</option>
             <option value="styl-klasyczny">Styl klasyczny</option>
             <option value="efekt-objetosci">Efekt objętości</option>
@@ -491,21 +600,20 @@
 
         <div class="form-group">
           <label for="date">Preferowana data</label>
-          <input type="date" id="date" name="Preferowana data">
+          <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date">
         </div>
 
         <div class="form-group">
           <label for="message">Dodatkowe uwagi</label>
-          <textarea id="message" name="Dodatkowe uwagi" placeholder="Dodatkowe informacje..."></textarea>
+          <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Wyślij rezerwację</button>
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i> Wyślij rezerwację
+        </button>
 
         <p class="message success" id="form-success-message">
           Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
-        </p>
-        <p class="message error" id="form-error-message">
-          Wystąpił problem z wysłaniem rezerwacji. Spróbuj ponownie lub skontaktuj się bezpośrednio.
         </p>
       </form>
     </div>
@@ -596,47 +704,31 @@
       initRotation();
     })();
 
-    // Skrypt do obsługi formularza Formspree
+    // Skrypt do obsługi formularza (przywrócony mailto:)
     const form = document.getElementById('reservation-form');
     const successMessage = document.getElementById('form-success-message');
-    const errorMessage = document.getElementById('form-error-message');
 
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault(); // Zawsze zapobiegaj domyślnej wysyłce formularza
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Zapobiega domyślnej wysyłce formularza
 
       // Ukryj poprzednie komunikaty
       successMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
 
-      const formData = new FormData(form);
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const message = document.getElementById('message').value;
 
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: formData,
-          headers: {
-              'Accept': 'application/json'
-          }
-        });
+      const subject = `Rezerwacja od: ${name}`;
+      const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
 
-        if (response.ok) {
-          successMessage.style.display = 'block';
-          form.reset(); // Resetuj formularz po sukcesie
-        } else {
-          // Spróbuj odczytać błędy z odpowiedzi, jeśli są dostępne
-          const data = await response.json();
-          if (data && data.errors) {
-            errorMessage.textContent = 'Wystąpił błąd: ' + data.errors.map(err => err.field + ' ' + err.message).join(', ');
-          } else {
-            errorMessage.textContent = 'Wystąpił problem z wysłaniem rezerwacji. Spróbuj ponownie.';
-          }
-          errorMessage.style.display = 'block';
-        }
-      } catch (error) {
-        errorMessage.textContent = 'Wystąpił błąd sieci. Proszę sprawdzić połączenie i spróbować ponownie.';
-        errorMessage.style.display = 'block';
-        console.error('Błąd wysyłki formularza:', error);
-      }
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Pokaż komunikat sukcesu i zresetuj formularz po wysłaniu mailto
+      successMessage.style.display = 'block';
+      form.reset();
     });
 
     // Płynne przewijanie do sekcji
