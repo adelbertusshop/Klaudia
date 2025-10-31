@@ -515,6 +515,7 @@
   </section>
   <!-- ========== KONIEC BANERA ========== -->
 
+  <!-- ========== NAVIGATION (OD CIEBIE) ========== -->
   <nav>
     <ul>
       <li><a href="#about-us">O nas</a></li>
@@ -524,6 +525,7 @@
     </ul>
   </nav>
 
+  <!-- ========== ORIGINAL: intro-section (z twojego kodu) ========== -->
   <section class="intro-section" id="about-us">
     <div class="gold-line"></div>
     <p>Salon stylizacji rzęs</p>
@@ -531,6 +533,7 @@
     <img src="assets/img/profilowe_klaudia.jpg" alt="Zdjęcie profilowe Klaudii" class="header-image" loading="lazy" onerror="this.style.display='none'">
   </section>
 
+  <!-- ========== ORIGINAL: sekcja "Piękno w każdym spojrzeniu" ========== -->
   <section>
     <div class="gold-line"></div>
     <h2>Piękno w każdym spojrzeniu ✨</h2>
@@ -547,6 +550,7 @@
     </div>
   </section>
 
+  <!-- ========== ORIGINAL: galeria realizacji ========== -->
   <section class="photo-gallery" id="gallery">
     <div class="gallery-container">
       <div class="gold-line"></div>
@@ -568,6 +572,7 @@
     </div>
   </section>
 
+  <!-- ========== ORIGINAL: formularz rezerwacji ========== -->
   <section class="booking-form" id="booking-form">
     <div class="form-container">
       <div class="gold-line"></div>
@@ -621,6 +626,7 @@
     </div>
   </section>
 
+  <!-- ========== ORIGINAL: opinie (karty) ========== -->
   <section class="reviews-section" id="reviews">
     <div class="reviews-container">
       <div class="gold-line"></div>
@@ -630,13 +636,14 @@
         <!-- review cards będą renderowane przez JS -->
       </div>
 
-      <!-- GALERIA ZDJĘĆ POD KARTAMI OPINII -->
+      <!-- ========== DODANE: GALERIA ZDJĘĆ POD KARTAMI OPINII ========== -->
       <div class="reviews-gallery" aria-hidden="false">
         <img src="assets/img/recenzje_1.jpg" alt="Stylizacja rzęs - recenzja 1" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_2.jpg" alt="Stylizacja rzęs - recenzja 2" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_3.jpg" alt="Stylizacja rzęs - recenzja 3" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_4.jpg" alt="Stylizacja rzęs - recenzja 4" loading="lazy" onerror="this.style.display='none'">
       </div>
+      <!-- ========== KONIEC GALERII ========== -->
 
     </div>
   </section>
@@ -646,7 +653,7 @@
   </footer>
 
   <script>
-    /* ---------- Rotacja opinii co 12 godzin (synchronizowana z czasem) ---------- */
+    /* ---------- Rotacja opinii co 12 godzin (synchronizowana z zegarem) ---------- */
     (function() {
       const reviewSets = [
         [
