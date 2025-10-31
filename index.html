@@ -724,8 +724,7 @@
 
       initRotation();
     })();
-
-    // Skrypt do obsługi formularza (przywrócony mailto:)
+// Skrypt do obsługi formularza (przywrócony mailto: z lepszym formatowaniem)
     const form = document.getElementById('reservation-form');
     const successMessage = document.getElementById('form-success-message');
 
@@ -738,19 +737,34 @@
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const phone = document.getElementById('phone').value;
-      const service = document.getElementById('service').value;
+      const serviceElement = document.getElementById('service');
+      const service = serviceElement.options[serviceElement.selectedIndex].text; // Pobieramy tekst opcji, a nie value
       const date = document.getElementById('date').value;
       const message = document.getElementById('message').value;
 
-      const subject = `Rezerwacja od: ${name}`;
-      const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
+      // Budujemy treść wiadomości e-mail
+      let bodyContent = `Nowa rezerwacja wizyty:%0A%0A`; // Tylko %0A dla nowej linii
+      bodyContent += `Imię i nazwisko: ${name}%0A`;
+      bodyContent += `Email: ${email}%0A`;
+      bodyContent += `Telefon: ${phone}%0A`;
+      bodyContent += `Usługa: ${service}%0A`;
 
-      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (date) { // Dodaj datę tylko jeśli została wybrana
+          bodyContent += `Preferowana data: ${date}%0A`;
+      }
+      if (message) { // Dodaj wiadomość tylko jeśli została wpisana
+          bodyContent += `Dodatkowe uwagi: ${message}%0A`;
+      }
+
+      const subject = `Rezerwacja od: ${name}`;
+
+      // Używamy encodeURIComponent dla tematu i treści
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
 
       // Pokaż komunikat sukcesu i zresetuj formularz po wysłaniu mailto
       successMessage.style.display = 'block';
       form.reset();
-    });
+    }); 
 
     // Płynne przewijanie do sekcji
     document.querySelectorAll('nav a').forEach(anchor => {
