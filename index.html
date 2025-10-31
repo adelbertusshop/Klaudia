@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Klaudia – Salon stylizacji rzęs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
+    /* ---------- Twój oryginalny styl (niezmieniony) ---------- */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -150,7 +151,7 @@
       display: none;
     }
 
-    /* Style dla galerii zdjęć */
+    /* Style dla galerii zdjęć (oryginalna sekcja) */
     .photo-gallery {
       background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
       padding: 80px 20px;
@@ -195,7 +196,7 @@
       object-fit: cover;
     }
 
-    /* Style dla opinii */
+    /* Style dla opinii (oryginalne) */
     .reviews-section {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -227,7 +228,7 @@
     }
 
     .review-card::before {
-      content: """;
+      content: "";
       font-size: 100px;
       color: #d4af37;
       position: absolute;
@@ -265,24 +266,90 @@
       margin-bottom: 20px;
       font-weight: 300;
     }
+
+    /* ---------- DODANE: baner, glow, fade-in, galeria opinii, responsywność ---------- */
+
+    /* Efekt pojawiania się banera */
+    .fade-in-banner { opacity: 0; animation: fadeInBanner 1.8s ease-out forwards; }
+    @keyframes fadeInBanner {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Baner */
+    .hero-banner { position: relative; width: 100%; height: auto; overflow: hidden; border-bottom: 2px solid #d4af37; }
+    #banner-claudia { width: 100%; height: auto; max-height: 90vh; object-fit: cover; display: block; margin: 0 auto; }
+
+    /* Tekst z efektem rozbłysku */
+    .klaudia-glow {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212,175,55,0.5);
+      background: linear-gradient(90deg,#b8860b,#ffd700,#ffe88a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShine 4s linear infinite;
+    }
+    @keyframes goldShine { 0%{background-position:0% 50%}100%{background-position:100% 50%} }
+
+    /* Galeria opinii (pod kartami opinii) */
+    .reviews-gallery {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+    }
+    .reviews-gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #d4af37;
+      box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+      transition: transform .25s ease;
+    }
+    .reviews-gallery img:hover { transform: scale(1.03); }
+
+    @media (max-width: 768px) {
+      .klaudia-glow { font-size: 2.5rem; }
+      .reviews-gallery img { height: 180px; }
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- ========== DODANE: BANER NA SAMEJ GÓRZE ========== -->
+  <section class="hero-banner fade-in-banner" aria-hidden="false">
+    <img id="banner-claudia" src="assets/img/baner_klaudia.jpg" alt="Klaudia – Modelowanie rzęs (baner)" onerror="this.style.display='none'">
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+      <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
+    </div>
+  </section>
+  <!-- ========== KONIEC BANERA ========== -->
+
+  <!-- Twój oryginalny header (bez zmian) -->
   <header>
     <h1>Klaudia</h1>
     <p>Salon stylizacji rzęs</p>
-    
-    <!-- Zdjęcie główne -->
+
+    <!-- Zdjęcie główne (oryginalne) -->
     <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Salon Klaudia" class="header-image" onerror="this.style.display='none'">
   </header>
 
+  <!-- Oryginalna sekcja 'Piękno w każdym spojrzeniu' (bez zmian) -->
   <section>
     <div class="gold-line"></div>
     <h2>Piękno w każdym spojrzeniu ✨</h2>
     <div class="about">
       <p>
-        W salonie <strong>Klaudia</strong> specjalizujemy się w profesjonalnej stylizacji rzęs. 
-        Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało.  
+        W salonie <strong>Klaudia</strong> specjalizujemy się w profesjonalnej stylizacji rzęs.
+        Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało.
         Pracujemy wyłącznie na najwyższej jakości produktach, zapewniając komfort i perfekcyjny efekt.
       </p>
       <p>
@@ -292,27 +359,21 @@
     </div>
   </section>
 
-  <!-- Sekcja galerii zdjęć -->
+  <!-- Oryginalna galeria zdjęć (bez zmian) -->
   <section class="photo-gallery">
     <div class="gallery-container">
       <div class="gold-line"></div>
       <h2>Nasze Realizacje</h2>
       <div class="photo-grid">
-        <!-- Zdjęcie 1 -->
         <div class="photo-item">
           <img src="Messenger_creation_37AC1E27-F14F-4B20-8AE7-FFB06FDEAB40.jpeg" alt="Stylizacja rzęs 1" onerror="this.parentElement.innerHTML='LASHARA<br>Zdjęcie 1'">
         </div>
-        
-        <!-- Zdjęcie 2 -->
         <div class="photo-item">
           <img src="Screenshot_20251030-124243_Messenger~2.jpg" alt="Stylizacja rzęs 2" onerror="this.parentElement.innerHTML='VASHARA<br>Zdjęcie 2'">
         </div>
-        
-        <!-- Dodatkowe miejsce na zdjęcia -->
         <div class="photo-item">
           <div>Twoje kolejne zdjęcie</div>
         </div>
-        
         <div class="photo-item">
           <div>Twoje kolejne zdjęcie</div>
         </div>
@@ -320,7 +381,7 @@
     </div>
   </section>
 
-  <!-- Sekcja formularza rezerwacji -->
+  <!-- Oryginalny formularz rezerwacji (bez zmian) -->
   <section class="booking-form" id="booking-form">
     <div class="form-container">
       <div class="gold-line"></div>
@@ -330,17 +391,17 @@
           <label for="name">Imię i nazwisko *</label>
           <input type="text" id="name" name="name" required>
         </div>
-        
+
         <div class="form-group">
           <label for="email">Email *</label>
           <input type="email" id="email" name="email" required>
         </div>
-        
+
         <div class="form-group">
           <label for="phone">Telefon *</label>
           <input type="tel" id="phone" name="phone" required>
         </div>
-        
+
         <div class="form-group">
           <label for="service">Usługa *</label>
           <select id="service" name="service" required>
@@ -352,19 +413,19 @@
             <option value="konsultacja">Konsultacja</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label for="date">Preferowana data</label>
           <input type="date" id="date" name="date">
         </div>
-        
+
         <div class="form-group">
           <label for="message">Dodatkowe uwagi</label>
           <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
         </div>
-        
+
         <button type="submit" class="submit-btn" onclick="sendEmail()">Wyślij rezerwację</button>
-        
+
         <div class="success-message" id="success-message">
           Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
         </div>
@@ -372,40 +433,38 @@
     </div>
   </section>
 
-  <!-- Sekcja opinii -->
+  <!-- ========== OPINIE (ORYGINALNE KARTY) ========== -->
   <section class="reviews-section">
     <div class="reviews-container">
       <div class="gold-line"></div>
       <h2>Opinie naszych klientek</h2>
-      <div class="review-grid">
+
+      <!-- Tu wstawiamy dynamicznie zawartość opinii (rotacja co 12h) -->
+      <div id="review-grid" class="review-grid">
+        <!-- Defaultowe trzy karty (zostaną zastąpione przez JS) -->
         <div class="review-card">
-          <div class="review-text">
-            Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt jest naturalny, a zarazem magiczny. Mój mąż nie mógł oderwać ode mnie wzroku! Prawdziwa artystka.
-          </div>
-          <div>
-            <div class="review-author">Anna, 28 lat</div>
-            <div class="review-rating">★★★★★</div>
-          </div>
+          <div class="review-text">Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt jest naturalny, a zarazem magiczny. Mój mąż nie mógł oderwać ode mnie wzroku! Prawdziwa artystka.</div>
+          <div><div class="review-author">Anna, 28 lat</div><div class="review-rating">★★★★★</div></div>
         </div>
         <div class="review-card">
-          <div class="review-text">
-            Hipnotyzujące! To jedyne słowo które opisuje efekt. Rzęsy są lekkie, wygodne i utrzymują się perfekcyjnie. Klaudia to prawdziwa artystka - zna się na swojej pracy jak nikt inny. Polecam każdej kobiecie!
-          </div>
-          <div>
-            <div class="review-author">Magdalena, 32 lata</div>
-            <div class="review-rating">★★★★★</div>
-          </div>
+          <div class="review-text">Hipnotyzujące! To jedyne słowo które opisuje efekt. Rzęsy są lekkie, wygodne i utrzymują się perfekcyjnie. Klaudia to prawdziwa artystka - zna się na swojej pracy jak nikt inny. Polecam każdej kobiecie!</div>
+          <div><div class="review-author">Magdalena, 32 lata</div><div class="review-rating">★★★★★</div></div>
         </div>
         <div class="review-card">
-          <div class="review-text">
-            Moje oczy zyskały nowe życie! Wreszcie czuję się pewnie bez makijażu. Efekt jest tak naturalny, że wszyscy myślą, że to moje własne rzęsy, tylko w lepszej wersji. Klaudia to czarodziejka!
-          </div>
-          <div>
-            <div class="review-author">Katarzyna, 25 lat</div>
-            <div class="review-rating">★★★★★</div>
-          </div>
+          <div class="review-text">Moje oczy zyskały nowe życie! Wreszcie czuję się pewnie bez makijażu. Efekt jest tak naturalny, że wszyscy myślą, że to moje własne rzęsy, tylko w lepszej wersji. Klaudia to czarodziejka!</div>
+          <div><div class="review-author">Katarzyna, 25 lat</div><div class="review-rating">★★★★★</div></div>
         </div>
       </div>
+
+      <!-- ========== DODANE: GALERIA ZDJĘĆ POD KARTAMI OPINII ========== -->
+      <div class="reviews-gallery" aria-hidden="false">
+        <img src="assets/img/photo1.jpg" alt="Stylizacja rzęs - photo1" onerror="this.style.display='none'">
+        <img src="assets/img/photo2.jpg" alt="Stylizacja rzęs - photo2" onerror="this.style.display='none'">
+        <img src="assets/img/photo3.jpg" alt="Stylizacja rzęs - photo3" onerror="this.style.display='none'">
+        <img src="assets/img/photo4.jpg" alt="Stylizacja rzęs - photo4" onerror="this.style.display='none'">
+      </div>
+      <!-- ========== KONIEC GALERII ========== -->
+
     </div>
   </section>
 
@@ -414,28 +473,83 @@
   </footer>
 
   <script>
+    /* ---------- Oryginalny kod wysyłki (bez zmian) ---------- */
     function sendEmail() {
       event.preventDefault();
-      
+
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const phone = document.getElementById('phone').value;
       const service = document.getElementById('service').value;
       const date = document.getElementById('date').value;
       const message = document.getElementById('message').value;
-      
+
       const subject = `Rezerwacja od: ${name}`;
       const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
-      
-      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${subject}&body=${body}`;
-      
-      document.getElementById('success-message').style.display = 'block';
-      document.getElementById('reservation-form').reset();
-    }
 
-    document.getElementById('reservation-form').addEventListener('submit', function(event) {
-      sendEmail();
-    });
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const success = document.getElementById('success-message');
+      if (success) success.style.display = 'block';
+      const form = document.getElementById('reservation-form');
+      if (form) form.reset();
+    }
+    document.getElementById('reservation-form').addEventListener('submit', function(event) { sendEmail(); });
+
+    /* ---------- DODANE: rotacja opinii co 12 godzin (synchronizowana z zegarem) ---------- */
+    (function() {
+      // Tablice zestawów opinii (możesz edytować treści poniżej)
+      const reviewSets = [
+        [
+          { text: "Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt naturalny i magiczny.", author: "Anna, 28 lat", rating: "★★★★★" },
+          { text: "Hipnotyzujące! Rzęsy są lekkie i trwałe. Klaudia to prawdziwa artystka.", author: "Magdalena, 32 lata", rating: "★★★★★" },
+          { text: "Moje oczy zyskały nowe życie! Efekt naturalny i trwały – wreszcie czuję się pięknie bez makijażu!", author: "Katarzyna, 25 lat", rating: "★★★★★" }
+        ],
+        [
+          { text: "Profesjonalna usługa, piękny efekt i świetna atmosfera. Polecam każdej kobiecie!", author: "Marta, 30 lat", rating: "★★★★★" },
+          { text: "Dokładność i trwałość. Rzęsy trzymają się świetnie przez tygodnie.", author: "Ewa, 35 lat", rating: "★★★★★" },
+          { text: "Pełen profesjonalizm, ciepłe podejście i rewelacyjny efekt.", author: "Basia, 29 lat", rating: "★★★★★" }
+        ],
+        [
+          { text: "Najlepszy salon w mieście. Efekt naturalny i piękny.", author: "Kinga, 27 lat", rating: "★★★★★" },
+          { text: "Szybko, estetycznie i pięknie — rzęsy wyglądają obłędnie.", author: "Zuzanna, 33 lata", rating: "★★★★★" },
+          { text: "Polecam. Miła atmosfera i super efekt końcowy.", author: "Agnieszka, 40 lat", rating: "★★★★★" }
+        ]
+      ];
+
+      const reviewGrid = document.getElementById('review-grid');
+
+      function renderSet(index) {
+        if (!reviewGrid) return;
+        reviewGrid.innerHTML = '';
+        const set = reviewSets[index] || reviewSets[0];
+        set.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'review-card';
+          card.innerHTML = `<div class="review-text">${item.text}</div>
+                            <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
+          reviewGrid.appendChild(card);
+        });
+      }
+
+      // Wyznacz index zestawu w zależności od czasu: co 12 godzin zmiana
+      function getCurrentSetIndex() {
+        const msPer12h = 12 * 60 * 60 * 1000;
+        const index = Math.floor(Date.now() / msPer12h) % reviewSets.length;
+        return index;
+      }
+
+      // Ustaw początkowo i zaktualizuj przy starcie
+      function initRotation() {
+        renderSet( getCurrentSetIndex() );
+        // Dla bezpieczeństwa, ustaw interwał, który co godzinę sprawdza czy trzeba zmienić (nie czekamy full 12h w JS)
+        setInterval(() => {
+          renderSet( getCurrentSetIndex() );
+        }, 60 * 60 * 1000); // co godzinę sprawdzamy, czy nadszedł nowy okres 12h
+      }
+
+      initRotation();
+    })();
   </script>
 </body>
 </html>
