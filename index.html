@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -93,7 +92,7 @@
       transform: scale(1.05);
     }
 
-    /* Style dla formularza */
+    /* Style dla kontaktu */
     .booking-form {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -108,53 +107,22 @@
       border: 1px solid #d4af37;
     }
 
-    .form-group {
-      margin-bottom: 25px;
-      text-align: left;
+    .contact-info {
+      font-size: 20px;
+      line-height: 1.8;
     }
 
-    .form-group label {
-      display: block;
-      color: #f0e6b2;
-      margin-bottom: 8px;
-      font-size: 16px;
+    .phone-number {
+      font-size: 28px;
+      color: #d4af37;
+      font-weight: bold;
+      margin: 20px 0;
     }
 
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #d4af37;
-      border-radius: 10px;
-      background: #000;
-      color: #fff;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .form-group textarea {
-      height: 100px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 18px;
-      margin-top: 20px;
-    }
-
-    .success-message {
-      color: #4CAF50;
-      margin-top: 20px;
-      display: none;
-    }
-
-    .error-message {
-      color: #f44336;
-      margin-top: 20px;
-      display: none;
+    .email-address {
+      font-size: 22px;
+      color: #d4af37;
+      margin: 20px 0;
     }
 
     /* Style dla galerii zdjęć */
@@ -327,6 +295,23 @@
     </div>
   </section>
 
+  <!-- Sekcja kontaktu -->
+  <section class="booking-form" id="booking-form">
+    <div class="form-container">
+      <div class="gold-line"></div>
+      <h2>Zarezerwuj Wizytę</h2>
+      <div class="contact-info">
+        <p><strong>Zadzwoń lub napisz SMS:</strong></p>
+        <div class="phone-number">+48 123 456 789</div>
+        <p><strong>Email:</strong></p>
+        <div class="email-address">klaudiaganowska9@gmail.com</div>
+        <p style="margin-top: 30px; color: #f0e6b2;">
+          Skontaktuj się bezpośrednio, aby umówić termin wizyty!
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Sekcja opinii -->
   <section class="reviews-section">
     <div class="reviews-container">
@@ -367,37 +352,5 @@
   <footer>
     &copy; 2025 Salon Klaudia – Wszystkie prawa zastrzeżone
   </footer>
-
-  <script>
-    // Inicjalizacja EmailJS
-    emailjs.init("26es87U-rjUzsUtV7");
-
-    document.getElementById('reservation-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      // Pobierz dane z formularza
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        service: document.getElementById('service').value,
-        date: document.getElementById('date').value,
-        message: document.getElementById('message').value
-      };
-
-      // Wyślij email przez EmailJS
-      emailjs.send("service_gwz0ja7", "template_064b7uo", formData)
-        .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-          document.getElementById('success-message').style.display = 'block';
-          document.getElementById('error-message').style.display = 'none';
-          document.getElementById('reservation-form').reset();
-        }, function(error) {
-          console.log('FAILED...', error);
-          document.getElementById('error-message').style.display = 'block';
-          document.getElementById('success-message').style.display = 'none';
-        });
-    });
-  </script>
 </body>
 </html>
