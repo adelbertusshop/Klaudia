@@ -92,7 +92,7 @@
       transform: scale(1.05);
     }
 
-    /* Style dla kontaktu */
+    /* Style dla formularza */
     .booking-form {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -107,22 +107,47 @@
       border: 1px solid #d4af37;
     }
 
-    .contact-info {
-      font-size: 20px;
-      line-height: 1.8;
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
     }
 
-    .phone-number {
-      font-size: 28px;
-      color: #d4af37;
-      font-weight: bold;
-      margin: 20px 0;
+    .form-group label {
+      display: block;
+      color: #f0e6b2;
+      margin-bottom: 8px;
+      font-size: 16px;
     }
 
-    .email-address {
-      font-size: 22px;
-      color: #d4af37;
-      margin: 20px 0;
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d4af37;
+      border-radius: 10px;
+      background: #000;
+      color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .success-message {
+      color: #4CAF50;
+      margin-top: 20px;
+      display: none;
     }
 
     /* Style dla galerii zdjęć */
@@ -295,20 +320,55 @@
     </div>
   </section>
 
-  <!-- Sekcja kontaktu -->
+  <!-- Sekcja formularza rezerwacji -->
   <section class="booking-form" id="booking-form">
     <div class="form-container">
       <div class="gold-line"></div>
       <h2>Zarezerwuj Wizytę</h2>
-      <div class="contact-info">
-        <p><strong>Zadzwoń lub napisz SMS:</strong></p>
-        <div class="phone-number">+48 123 456 789</div>
-        <p><strong>Email:</strong></p>
-        <div class="email-address">klaudiaganowska9@gmail.com</div>
-        <p style="margin-top: 30px; color: #f0e6b2;">
-          Skontaktuj się bezpośrednio, aby umówić termin wizyty!
-        </p>
-      </div>
+      <form id="reservation-form">
+        <div class="form-group">
+          <label for="name">Imię i nazwisko *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Telefon *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Usługa *</label>
+          <select id="service" name="service" required>
+            <option value="">Wybierz usługę</option>
+            <option value="styl-klasyczny">Styl klasyczny</option>
+            <option value="efekt-objetosci">Efekt objętości</option>
+            <option value="rzesy-kocie-oko">Rzęsy kocie oko</option>
+            <option value="mega-volume">Mega volume</option>
+            <option value="konsultacja">Konsultacja</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Preferowana data</label>
+          <input type="date" id="date" name="date">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Dodatkowe uwagi</label>
+          <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn" onclick="sendEmail()">Wyślij rezerwację</button>
+        
+        <div class="success-message" id="success-message">
+          Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
+        </div>
+      </form>
     </div>
   </section>
 
@@ -352,5 +412,30 @@
   <footer>
     &copy; 2025 Salon Klaudia – Wszystkie prawa zastrzeżone
   </footer>
+
+  <script>
+    function sendEmail() {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const message = document.getElementById('message').value;
+      
+      const subject = `Rezerwacja od: ${name}`;
+      const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
+      
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${subject}&body=${body}`;
+      
+      document.getElementById('success-message').style.display = 'block';
+      document.getElementById('reservation-form').reset();
+    }
+
+    document.getElementById('reservation-form').addEventListener('submit', function(event) {
+      sendEmail();
+    });
+  </script>
 </body>
 </html>
