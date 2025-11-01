@@ -417,6 +417,7 @@
     }
     .reviews-gallery img:hover { transform: scale(1.03); }
 
+    /* === POPRAWIONA NAWIGACJA === */
     nav {
       background-color: #111;
       padding: 15px 20px;
@@ -427,16 +428,34 @@
       z-index: 1000;
     }
 
-    nav ul {
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
       gap: 30px;
     }
 
-    nav a {
+    .nav-menu li {
+      margin: 0;
+    }
+
+    .nav-menu a {
       color: #f0e6b2;
       text-decoration: none;
       font-weight: 500;
@@ -445,9 +464,26 @@
       transition: color 0.3s ease, border-bottom 0.3s ease;
     }
 
-    nav a:hover {
+    .nav-menu a:hover {
       color: #d4af37;
       border-bottom: 2px solid #d4af37;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: #d4af37;
+      margin: 3px 0;
+      transition: 0.3s;
     }
 
     @media (max-width: 992px) {
@@ -461,10 +497,6 @@
     @media (max-width: 768px) {
       .klaudia-glow { font-size: 3rem; }
       .reviews-gallery img { height: 180px; }
-      nav ul {
-        flex-direction: column;
-        gap: 15px;
-      }
       .intro-section p { font-size: 16px; }
       h2 { font-size: 32px; }
       .about { font-size: 16px; }
@@ -479,6 +511,40 @@
       .form-grid .form-group {
           margin-bottom: 25px;
       }
+      
+      /* === POPRAWIONA NAWIGACJA DLA TELEFONÓW === */
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background-color: #111;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+        border-top: 1px solid #d4af37;
+        gap: 0;
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .nav-menu li {
+        margin: 15px 0;
+      }
+      
+      .nav-menu a {
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -490,7 +556,7 @@
       .header-image { max-width: 200px; }
       .reviews-gallery { grid-template-columns: 1fr; }
       nav { padding: 10px; }
-      nav a { font-size: 16px; }
+      .nav-menu a { font-size: 16px; }
       .form-group input, .form-group select { padding-left: 30px; font-size: 14px; }
       .form-group i { left: 8px; font-size: 14px; }
       .form-group label { font-size: 14px; }
@@ -774,15 +840,23 @@
 </section>
 
   <nav>
-    <ul>
-      <li><a href="#about-us">O nas</a></li>
-      <li><a href="#gallery">Galeria</a></li>
-      <li><a href="#pricing">Cennik</a></li>
-      <li><a href="#booking-form">Rezerwacja</a></li>
-      <li><a href="#reviews">Opinie</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#location">Lokalizacja</a></li>
-    </ul>
+    <div class="nav-container">
+      <a href="#" class="logo">Klaudia</a>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about-us">O nas</a></li>
+        <li><a href="#gallery">Galeria</a></li>
+        <li><a href="#pricing">Cennik</a></li>
+        <li><a href="#booking-form">Rezerwacja</a></li>
+        <li><a href="#reviews">Opinie</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#location">Lokalizacja</a></li>
+      </ul>
+    </div>
   </nav>
 
   <section class="intro-section" id="about-us">
@@ -1260,7 +1334,32 @@
         document.querySelector(targetId).scrollIntoView({
           behavior: 'smooth'
         });
+        
+        // Zamknij menu mobilne po kliknięciu
+        const navMenu = document.getElementById('nav-menu');
+        const hamburger = document.getElementById('hamburger');
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
       });
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Zamknij menu po kliknięciu poza nim
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
+      
+      if (!isClickInsideNav && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
     });
 
   </script>
