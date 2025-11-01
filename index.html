@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- Podstawowe style (zachowane) ---------- */
+    /* === TWÓJ ORYGINALNY KOD - BEZ ZMIAN === */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -18,28 +18,52 @@
       overflow-x: hidden;
     }
 
-    /* gold line */
-    .gold-line {
-      width: 100px;
-      height: 3px;
-      background-color: #d4af37;
-      margin: 30px auto;
-      border-radius: 6px;
-    }
-
-    /* header / intro */
     .intro-section {
       background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
       text-align: center;
       padding: 80px 20px 40px;
       border-bottom: 1px solid #d4af37;
     }
-    .intro-section p { color: #f0e6b2; font-size: 20px; margin-top: 10px; margin-bottom: 30px; }
-    .header-image { max-width: 300px; height: auto; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 20px rgba(212,175,55,0.4); margin: 20px auto; display:block; }
 
-    section { padding: 60px 20px; text-align: center; }
+    .intro-section h1 {
+      display: none;
+    }
 
-    .about { max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.7; color: #ddd; }
+    .intro-section p {
+      color: #f0e6b2;
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    .header-image {
+      max-width: 300px;
+      height: auto;
+      border-radius: 15px;
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+      margin: 20px auto;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .about {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    .gold-line {
+      width: 100px;
+      height: 3px;
+      background-color: #d4af37;
+      margin: 30px auto;
+    }
 
     footer {
       background-color: #111;
@@ -60,158 +84,675 @@
       font-weight: bold;
       transition: 0.3s;
     }
-    button:hover { background-color: #f0c857; transform: scale(1.05); }
 
-    /* FORM */
+    button:hover {
+      background-color: #f0c857;
+      transform: scale(1.05);
+    }
+
     .booking-form {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
       position: relative;
       overflow: hidden;
     }
+
+    .booking-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle fill="%232c2c2c" cx="10" cy="10" r="1.5"/></svg>') repeat;
+      opacity: 0.1;
+      animation: backgroundPan 60s linear infinite;
+    }
+
+    @keyframes backgroundPan {
+        from { background-position: 0 0; }
+        to { background-position: 200% 100%; }
+    }
+
     .form-container {
-      max-width: 600px; margin: 0 auto;
+      max-width: 600px;
+      margin: 0 auto;
       background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      padding: 40px; border-radius: 20px; border: 1px solid #d4af37;
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid #d4af37;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212,175,55,0.4);
+      position: relative;
+      z-index: 10;
     }
-    .form-group { margin-bottom: 25px; text-align: left; position: relative; }
-    .form-group label { display:block; color:#d4af37; margin-bottom:8px; font-size:16px; font-weight:500; }
-    .form-group input, .form-group textarea, .form-group select {
-      width:100%; padding:12px; border:1px solid #d4af37; border-radius:10px; background:#000; color:#fff; font-size:16px;
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 25px;
     }
-    .form-group textarea { height:100px; resize: vertical; }
-    .submit-btn { width:100%; padding:15px; font-size:18px; margin-top:20px; background-color:#d4af37; color:#000; border-radius:30px; }
-    .submit-btn:hover { background-color:#f0c857; }
 
-    .success-message { color:#4CAF50; margin-top:20px; display:none; }
-
-    /* GALLERY */
-    .photo-gallery { background: linear-gradient(180deg,#000,#1a1a1a); padding:80px 20px; }
-    .gallery-container { max-width:1200px; margin:0 auto; }
-    .photo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-top:50px; }
-    .photo-item { position:relative; border-radius:15px; overflow:hidden; border:2px solid #d4af37; box-shadow:0 8px 25px rgba(212,175,55,0.3); transition:all .3s ease; background:linear-gradient(45deg,#2a2a2a,#3a3a3a); height:250px; display:flex; align-items:center; justify-content:center; color:#d4af37; font-size:18px; }
-    .photo-item img { width:100%; height:100%; object-fit:cover; display:block; }
-
-    /* REVIEWS */
-    .reviews-section { background: linear-gradient(180deg,#1a1a1a,#000); padding:80px 20px; }
-    .reviews-container { max-width:1200px; margin:0 auto; }
-    .review-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:35px; margin-top:50px; }
-    .review-card { background: linear-gradient(145deg,#2a2a2a,#1a1a1a); padding:35px; border-radius:20px; border:1px solid #d4af37; text-align:left; position:relative; min-height:200px; display:flex; flex-direction:column; justify-content:space-between; }
-    .review-text { color:#eee; font-style:italic; line-height:1.7; margin-bottom:25px; font-size:16px; z-index:1; position:relative; }
-    .review-author { color:#d4af37; font-weight:500; font-size:17px; }
-    .review-rating { color:#f0c857; font-size:20px; margin-top:8px; }
-
-    /* REVIEWS GALLERY (pod opiniami) */
-    .reviews-gallery { margin-top:40px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; max-width:1100px; margin-left:auto; margin-right:auto; padding:20px; }
-    .reviews-gallery img { width:100%; height:220px; object-fit:cover; border-radius:12px; border:2px solid #d4af37; box-shadow:0 6px 20px rgba(212,175,55,0.3); transition:transform .25s ease; }
-    .reviews-gallery img:hover { transform:scale(1.03); }
-
-    /* NAV */
-    nav { background-color:#111; padding:15px 20px; text-align:center; border-bottom:1px solid #d4af37; position:sticky; top:0; z-index:1000; }
-    nav ul { list-style:none; margin:0; padding:0; display:flex; justify-content:center; gap:30px; }
-    nav a { color:#f0e6b2; text-decoration:none; font-weight:500; font-size:17px; padding:5px 0; transition: color .3s ease; }
-    nav a:hover { color:#d4af37; border-bottom:2px solid #d4af37; }
-
-    /* PRICING / FAQ / LOCATION / SOCIAL (nowe) */
-    .pricing-section, .faq-section, .location-section, .social-section {
-      background: linear-gradient(180deg,#000,#1a1a1a);
-      padding:80px 20px;
-      text-align:center;
+    .form-grid .form-group {
+        margin-bottom: 0;
     }
-    .price-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-top:50px; max-width:900px; margin-left:auto; margin-right:auto; }
-    .price-item { background:linear-gradient(145deg,#2a2a2a,#1a1a1a); padding:30px; border-radius:15px; border:1px solid #d4af37; transition:transform .3s; }
-    .price-item:hover { transform:translateY(-5px); }
-    .service-name { color:#f0e6b2; font-size:20px; font-weight:500; }
-    .service-price { color:#d4af37; font-size:24px; font-weight:bold; }
-    .service-duration { color:#bbb; font-size:14px; }
 
-    .faq-item { background:linear-gradient(145deg,#2a2a2a,#1a1a1a); margin:20px 0; border-radius:15px; border:1px solid #d4af37; overflow:hidden; max-width:900px; margin-left:auto; margin-right:auto; }
-    .faq-question { padding:20px; color:#f0e6b2; font-size:18px; font-weight:500; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
-    .faq-answer { padding:0 20px 20px; color:#ddd; line-height:1.6; display:none; }
-
-    .map-container { max-width:800px; margin:30px auto 0; border-radius:15px; overflow:hidden; border:2px solid #d4af37; box-shadow:0 8px 25px rgba(212,175,55,0.3); }
-    .map-container iframe { display:block; width:100%; height:400px; border:none; }
-
-    .social-links { display:flex; justify-content:center; gap:30px; margin-top:30px; }
-    .social-links a { display:flex; align-items:center; justify-content:center; width:60px; height:60px; background:linear-gradient(145deg,#2a2a2a,#1a1a1a); border-radius:50%; border:2px solid #d4af37; color:#d4af37; font-size:24px; text-decoration:none; transition:all .3s; }
-    .social-links a:hover { background:#d4af37; color:#000; transform:translateY(-5px); }
-
-    /* LOADER */
-    .loader { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center; }
-    .loader-spinner { width:50px; height:50px; border:5px solid #333; border-top:5px solid #d4af37; border-radius:50%; animation:spin 1s linear infinite; }
-    @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-
-    /* HERO / BANER + EFEKTY */
-    .hero-banner {
-      position:relative;
-      width:100%;
-      height: clamp(260px, 38vh, 640px);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      border-bottom:2px solid #d4af37;
-      background: linear-gradient(90deg, rgba(10,10,10,1) 0%, rgba(40,30,20,1) 100%); /* fallback */
-      background-size:cover; background-position:center;
+    .form-group.full-width {
+        grid-column: 1 / -1;
     }
-    .hero-banner img { display:none; } /* ukrywamy obraz - używamy background-image na elemencie hero (ustawione przez JS jeśli istnieje) */
+
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      color: #d4af37;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background: #000;
+      color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .form-group textarea {
+      padding: 12px 15px;
+      height: 100px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.3);
+      outline: none;
+      background-color: #0d0d0d;
+    }
+
+    .form-group select {
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d4af37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.8c-5%200-9.3%201.8-12.9%205.4-3.6%203.6-5.4%207.8-5.4%2012.9%200%205.1%201.8%209.4%205.4%2012.9l118%20118c3.6%203.6%207.8%205.4%2012.9%205.4s9.3-1.8%2012.9-5.4l118-118c3.6-3.6%205.4-7.8%205.4-12.9z%22%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 12px;
+        padding-right: 45px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #888;
+      font-style: italic;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #d4af37;
+      font-size: 18px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .form-group label + i {
+      top: calc(50% + 15px);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      margin-top: 20px;
+      background-color: #d4af37;
+      color: #000;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #f0c857;
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.6);
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInSlideUp 0.5s ease-out forwards;
+    }
+
+    .message.success {
+      background-color: #d4af37;
+      color: #000;
+    }
+
+    @keyframes fadeInSlideUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .photo-gallery {
+      background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+      padding: 80px 20px;
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .photo-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 2px solid #d4af37;
+      box-shadow: 0 8px 25px rgba(212,175,55,0.3);
+      transition: all 0.3s ease;
+      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      font-size: 18px;
+    }
+
+    .photo-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(212,175,55,0.4);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reviews-section {
+      background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+      padding: 80px 20px;
+    }
+
+    .reviews-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+      margin-top: 50px;
+    }
+
+    .review-card {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid #d4af37;
+      text-align: left;
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .review-card::before {
+      content: "";
+      font-size: 100px;
+      color: #d4af37;
+      position: absolute;
+      top: -25px;
+      left: 20px;
+      font-family: serif;
+      opacity: 0.3;
+    }
+
+    .review-text {
+      color: #eee;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-size: 16px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .review-author {
+      color: #d4af37;
+      font-weight: 500;
+      font-size: 17px;
+    }
+
+    .review-rating {
+      color: #f0c857;
+      font-size: 20px;
+      margin-top: 8px;
+    }
+
+    h2 {
+      font-size: 42px;
+      color: #f0e6b2;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .fade-in-banner { opacity: 0; animation: fadeInBanner 1.8s ease-out forwards; }
+    @keyframes fadeInBanner {
+      from { opacity: 0; transform: translateY(-20px); }
+      to  { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-banner { position: relative; width: 100%; height: auto; max-height: 90vh; overflow: hidden; border-bottom: 2px solid #d4af37; }
+    #banner-claudia { width: 100%; height: auto; max-height: 90vh; object-fit: cover; display: block; margin: 0 auto; }
+
     .klaudia-glow {
-      font-family:'Great Vibes', cursive;
-      font-size: clamp(2.2rem, 6vw, 5rem);
-      color:#d4af37;
-      text-shadow:0 0 14px rgba(212,175,55,0.45);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212,175,55,0.5);
       background: linear-gradient(90deg,#b8860b,#ffd700,#ffe88a);
-      animation:goldShine 4s linear infinite;
-      z-index:5;
-      pointer-events:none;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShine 4s linear infinite;
     }
     @keyframes goldShine { 0%{background-position:0% 50%}100%{background-position:100% 50%} }
 
-    .banner-shine {
-      position:absolute;
-      top:-30%;
-      left:-40%;
-      width:60%;
-      height:160%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.0) 100%);
-      transform:rotate(-20deg);
-      filter:blur(18px);
-      opacity:0.0;
-      animation:shineMove 4.4s linear infinite;
-      z-index:4;
-      pointer-events:none;
+    .reviews-gallery {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
     }
-    @keyframes shineMove { 0%{left:-40%;opacity:0}10%{opacity:0.3}50%{left:80%;opacity:0.18}90%{opacity:0}100%{left:120%;opacity:0} }
-
-    /* FADE-IN sekcji */
-    .fade-section { opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease; }
-    .fade-section.visible { opacity:1; transform:translateY(0); }
-
-    /* Kursor - delikatna poświata reagująca */
-    body::before {
-      content:'';
-      position:fixed;
-      width:220px;
-      height:220px;
-      left:var(--mouse-x, -9999px);
-      top:var(--mouse-y, -9999px);
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-      pointer-events:none;
-      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.04) 30%, transparent 70%);
-      transition: left .05s linear, top .05s linear, opacity .2s;
-      z-index:900;
-      opacity:0;
+    .reviews-gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #d4af37;
+      box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+      transition: transform .25s ease;
     }
-    body.cursor-active::before { opacity:1; }
+    .reviews-gallery img:hover { transform: scale(1.03); }
 
-    /* responsywność */
-    @media (max-width:768px) {
-      .price-list { grid-template-columns: 1fr; }
-      .reviews-gallery img { height:180px; }
-      .klaudia-glow { font-size: clamp(1.8rem, 8vw, 3rem); }
+    nav {
+      background-color: #111;
+      padding: 15px 20px;
+      text-align: center;
+      border-bottom: 1px solid #d4af37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #f0e6b2;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 5px 0;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+      border-bottom: 2px solid #d4af37;
+    }
+
+    @media (max-width: 992px) {
+      .klaudia-glow { font-size: 4rem; }
+      h2 { font-size: 38px; }
+      .form-group input, .form-group select { padding-left: 35px; }
+      .form-group i { left: 10px; font-size: 16px; }
+      .form-group select { background-position: right 10px center; padding-right: 35px; }
+    }
+
+    @media (max-width: 768px) {
+      .klaudia-glow { font-size: 3rem; }
+      .reviews-gallery img { height: 180px; }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .intro-section p { font-size: 16px; }
+      h2 { font-size: 32px; }
+      .about { font-size: 16px; }
+      .review-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .form-container { padding: 30px; }
+      .submit-btn { padding: 12px; font-size: 16px; }
+      .form-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+      }
+      .form-grid .form-group {
+          margin-bottom: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .klaudia-glow { font-size: 2.2rem; }
+      .hero-banner { max-height: 60vh; }
+      h2 { font-size: 28px; }
+      .intro-section { padding: 60px 15px 30px; }
+      section { padding: 40px 15px; }
+      .header-image { max-width: 200px; }
+      .reviews-gallery { grid-template-columns: 1fr; }
+      nav { padding: 10px; }
+      nav a { font-size: 16px; }
+      .form-group input, .form-group select { padding-left: 30px; font-size: 14px; }
+      .form-group i { left: 8px; font-size: 14px; }
+      .form-group label { font-size: 14px; }
+      .form-group select { background-position: right 8px center; padding-right: 30px; background-size: 10px; }
+      .submit-btn { font-size: 14px; padding: 10px; }
+    }
+
+    /* === DODANE ELEMENTY === */
+    
+    /* 1. LOADER */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #333;
+      border-top: 3px solid #d4af37;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 2. MAPA */
+    .location-section {
+      background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .map-container {
+      max-width: 1000px;
+      margin: 40px auto 0;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 3px solid #d4af37;
+      box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      display: block;
+    }
+
+    .location-info {
+      max-width: 1000px;
+      margin: 30px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      text-align: left;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border-radius: 10px;
+      border: 1px solid #d4af37;
+    }
+
+    .location-icon {
+      font-size: 24px;
+      color: #d4af37;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212,175,55,0.1);
+      border-radius: 50%;
+    }
+
+    /* 3. CENNIK */
+    .pricing-section {
+      background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+      padding: 80px 20px;
+    }
+
+    .pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .pricing-card {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid #d4af37;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(212,175,55,0.3);
+    }
+
+    .pricing-card.featured {
+      border-width: 3px;
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    }
+
+    .pricing-header {
+      margin-bottom: 25px;
+    }
+
+    .service-name {
+      font-size: 24px;
+      color: #f0e6b2;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .service-price {
+      font-size: 36px;
+      color: #d4af37;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .service-duration {
+      color: #bbb;
+      font-size: 16px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin: 25px 0;
+    }
+
+    .pricing-features li {
+      padding: 8px 0;
+      color: #ddd;
+      border-bottom: 1px solid #333;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .pricing-features li:before {
+      content: "✓";
+      color: #d4af37;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* 4. FAQ */
+    .faq-section {
+      background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+      padding: 80px 20px;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border: 1px solid #d4af37;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: #f0c857;
+    }
+
+    .faq-question {
+      padding: 25px;
+      font-size: 18px;
+      color: #f0e6b2;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .faq-answer {
+      padding: 0 25px 25px;
+      color: #ddd;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .faq-question i {
+      transition: transform 0.3s ease;
+      color: #d4af37;
+    }
+
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    .faq-question.active + .faq-answer {
+      display: block;
+    }
+
+    /* 5. SOCIAL MEDIA W STOPCE */
+    .social-footer {
+      background: #111;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: #d4af37;
+      color: #000;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: #f0c857;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(212,175,55,0.4);
     }
 
   </style>
@@ -219,15 +760,18 @@
 <body>
 
   <!-- LOADER -->
-  <div class="loader" id="loader"><div class="loader-spinner"></div></div>
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
 
-  <!-- HERO BANER (fallback gradient + napis; JS ustawi background-image jeśli plik istnieje) -->
-  <section id="hero" class="hero-banner" role="img" aria-label="Baner Klaudia - modelowanie rzęs">
-    <div class="banner-shine" aria-hidden="true"></div>
-    <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
+  <!-- TWÓJ ORYGINALNY KOD -->
+  <section class="hero-banner fade-in-banner" aria-hidden="false">
+    <img id="banner-claudia" src="assets/img/baner_klaudia.jpg" alt="Klaudia – Modelowanie rzęs (baner)" loading="lazy" onerror="this.style.display='none'">
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+      <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
+    </div>
   </section>
 
-  <!-- NAV -->
   <nav>
     <ul>
       <li><a href="#about-us">O nas</a></li>
@@ -240,246 +784,365 @@
     </ul>
   </nav>
 
-  <!-- INTRO / O NAS -->
-  <section class="intro-section fade-section" id="about-us">
+  <section class="intro-section" id="about-us">
     <div class="gold-line"></div>
     <p>Salon stylizacji rzęs</p>
     <img src="assets/img/profilowe_klaudia.jpg" alt="Zdjęcie profilowe Klaudii" class="header-image" loading="lazy" onerror="this.style.display='none'">
-    <h2 style="font-family:'Great Vibes', cursive; color:#d4af37; margin-top:20px;">Piękno w każdym spojrzeniu ✨</h2>
+  </section>
+
+  <section>
+    <div class="gold-line"></div>
+    <h2>Piękno w każdym spojrzeniu ✨</h2>
     <div class="about">
-      <p>
-        W salonie <strong>Klaudia</strong> specjalizujemy się w profesjonalnej stylizacji rzęs.
-        Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało.
-        Pracujemy wyłącznie na najwyższej jakości produktach, zapewniając komfort i perfekcyjny efekt.
-      </p>
+      <p>W salonie <strong>Klaudia</strong> specjalizujemy się w profesjonalnej stylizacji rzęs. Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało. Pracujemy wyłącznie na najwyższej jakości produktach, zapewniając komfort i perfekcyjny efekt.</p>
       <p>Zadbaj o swój wyjątkowy wygląd – umów się na wizytę i przekonaj się, jak niewiele potrzeba, by olśniewać!</p>
-      <button onclick="document.getElementById('booking-form').scrollIntoView({behavior:'smooth'})">Zarezerwuj wizytę</button>
+      <button onclick="document.getElementById('booking-form').scrollIntoView({behavior: 'smooth'})">Zarezerwuj wizytę</button>
     </div>
   </section>
 
-  <!-- GALERIA REALIZACJI -->
-  <section class="photo-gallery fade-section" id="gallery">
+  <section class="photo-gallery" id="gallery">
     <div class="gallery-container">
       <div class="gold-line"></div>
       <h2>Nasze Realizacje</h2>
       <div class="photo-grid">
         <div class="photo-item">
-          <img src="assets/img/realizacje_1.jpg" alt="Stylizacja rzęs - efekt objętości" loading="lazy" onerror="this.parentElement.innerHTML='<div style=&quot;text-align:center;&quot;>Zdjęcie realizacji 1<br>(brak pliku)</div>'">
+          <img src="assets/img/realizacje_1.jpg" alt="Stylizacja rzęs - efekt objętości" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 1<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <img src="assets/img/realizacje_2.jpg" alt="Stylizacja rzęs - rzęsy kocie oko" loading="lazy" onerror="this.parentElement.innerHTML='<div style=&quot;text-align:center;&quot;>Zdjęcie realizacji 2<br>(brak pliku)</div>'">
+          <img src="assets/img/realizacje_2.jpg" alt="Stylizacja rzęs - rzęsy kocie oko" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 2<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <img src="assets/img/realizacje_3.jpg" alt="Stylizacja rzęs - styl klasyczny" loading="lazy" onerror="this.parentElement.innerHTML='<div style=&quot;text-align:center;&quot;>Zdjęcie realizacji 3<br>(brak pliku)</div>'">
+          <img src="assets/img/realizacje_3.jpg" alt="Stylizacja rzęs - styl klasyczny" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 3<br> (brak pliku)</div>'">
         </div>
         <div class="photo-item">
-          <img src="assets/img/realizacje_4.jpg" alt="Stylizacja rzęs - mega volume" loading="lazy" onerror="this.parentElement.innerHTML='<div style=&quot;text-align:center;&quot;>Zdjęcie realizacji 4<br>(brak pliku)</div>'">
+          <img src="assets/img/realizacje_4.jpg" alt="Stylizacja rzęs - mega volume" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\'text-align:center;\'>Zdjęcie realizacji 4<br> (brak pliku)</div>'">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FORMULARZ REZERWACJI -->
-  <section class="booking-form fade-section" id="booking-form">
+  <!-- DODANY CENNIK -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-container">
+      <div class="gold-line"></div>
+      <h2>Cennik Usług</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="service-name">Styl klasyczny</div>
+            <div class="service-price">150 zł</div>
+            <div class="service-duration">Czas: 2-3 godziny</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Naturalne przedłużenie</li>
+            <li>Dopasowanie do kształtu oka</li>
+            <li>Materiały premium</li>
+            <li>Konsultacja stylistyczna</li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <div class="service-name">Efekt objętości</div>
+            <div class="service-price">200 zł</div>
+            <div class="service-duration">Czas: 3-4 godziny</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Spektakularna gęstość</li>
+            <li>Efekt "wow"</li>
+            <li>Materiały premium</li>
+            <li>Konsultacja w cenie</li>
+            <li>Gwarancja trwałości</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="service-name">Rzęsy kocie oko</div>
+            <div class="service-price">180 zł</div>
+            <div class="service-duration">Czas: 2.5-3.5 godziny</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Dramatyczny efekt wydłużenia</li>
+            <li>Uwodzicielski kształt migdałowy</li>
+            <li>Materiały premium</li>
+            <li>Indywidualne dopasowanie</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="service-name">Mega volume</div>
+            <div class="service-price">250 zł</div>
+            <div class="service-duration">Czas: 4-5 godzin</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Maksymalna gęstość</li>
+            <li>Najodważniejsze spojrzenie</li>
+            <li>Materiały najwyższej jakości</li>
+            <li>Pełna konsultacja</li>
+            <li>Gwarancja satysfakcji</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="service-name">Konsultacja</div>
+            <div class="service-price">50 zł</div>
+            <div class="service-duration">Czas: 30 minut</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Analiza potrzeb</li>
+            <li>Dopasowanie stylu</li>
+            <li>Przegląd opcji</li>
+            <li>Plan zabiegu</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="service-name">Uzupełnienie</div>
+            <div class="service-price">100 zł</div>
+            <div class="service-duration">Czas: 1.5-2 godziny</div>
+          </div>
+          <ul class="pricing-features">
+            <li>Uzupełnienie wypadających rzęs</li>
+            <li>Korekta kształtu</li>
+            <li>Czyszczenie i pielęgnacja</li>
+            <li>Materiały premium</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-form" id="booking-form">
     <div class="form-container">
       <div class="gold-line"></div>
       <h2>Zarezerwuj Wizytę</h2>
       <form id="reservation-form">
-        <div class="form-group">
-          <label for="name">Imię i nazwisko *</label>
-          <input type="text" id="name" name="name" required>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko *</label>
+                <i class="fas fa-user"></i> <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required>
+            </div>
         </div>
-
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-
         <div class="form-group">
           <label for="phone">Telefon *</label>
-          <input type="tel" id="phone" name="phone" required pattern="[0-9]{9}" title="Proszę podać 9 cyfr">
+          <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required>
         </div>
-
         <div class="form-group">
           <label for="service">Usługa *</label>
-          <select id="service" name="service" required>
+          <i class="fas fa-star"></i> <select id="service" name="service" required>
             <option value="">Wybierz usługę</option>
             <option value="styl-klasyczny">Styl klasyczny</option>
             <option value="efekt-objetosci">Efekt objętości</option>
             <option value="rzesy-kocie-oko">Rzęsy kocie oko</option>
             <option value="mega-volume">Mega volume</option>
             <option value="konsultacja">Konsultacja</option>
+            <option value="uzupelnienie">Uzupełnienie</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="date">Preferowana data</label>
-          <input type="date" id="date" name="date">
+          <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date">
         </div>
-
         <div class="form-group">
           <label for="message">Dodatkowe uwagi</label>
           <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
         </div>
-
         <button type="submit" class="submit-btn">
           <i class="fas fa-paper-plane"></i> Wyślij rezerwację
         </button>
-
-        <div class="success-message" id="form-success-message">Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.</div>
+        <p class="message success" id="form-success-message">
+          Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
+        </p>
       </form>
     </div>
   </section>
 
-  <!-- OPINIE -->
-  <section class="reviews-section fade-section" id="reviews">
+  <!-- DODANA MAPA -->
+  <section class="location-section" id="location">
+    <div class="location-container">
+      <div class="gold-line"></div>
+      <h2>Gdzie Nas Znajdziesz</h2>
+      <p style="color: #ddd; font-size: 18px; margin-bottom: 30px;">
+        Zapraszamy do naszego salonu w dogodnej lokalizacji w centrum miasta
+      </p>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.6000000000004!2d21.000000000000004!3d52.00000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDAwJzAwLjAiTiAyMcKwMDAnMDAuMCJF!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl" 
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="location-info">
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h3>Adres</h3>
+            <p>Ul. Przykładowa 123<br>00-000 Warszawa</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <h3>Godziny otwarcia</h3>
+            <p>Poniedziałek - Piątek: 9:00-18:00<br>Sobota: 10:00-16:00</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <h3>Telefon</h3>
+            <p>+48 123 456 789</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p>klaudiaganowska9@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-section" id="reviews">
     <div class="reviews-container">
       <div class="gold-line"></div>
       <h2>Opinie naszych klientek</h2>
-
       <div id="review-grid" class="review-grid">
-        <!-- recenzje będą renderowane przez JS -->
+        <div class="review-card">
+          <div class="review-text">Rzęsy wykonane u Klaudii to absolutne marzenie! Każde spojrzenie w lustro sprawia mi przyjemność. Efekt jest naturalny, a zarazem magiczny. Mój mąż nie mógł oderwać ode mnie wzroku! Prawdziwa artystka.</div>
+          <div><div class="review-author">Anna, 28 lat</div><div class="review-rating">★★★★★</div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-text">Hipnotyzujące! To jedyne słowo które opisuje efekt. Rzęsy są lekkie, wygodne i utrzymują się perfekcyjnie. Klaudia to prawdziwa artystka - zna się na swojej pracy jak nikt inny. Polecam każdej kobiecie!</div>
+          <div><div class="review-author">Magdalena, 32 lata</div><div class="review-rating">★★★★★</div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-text">Moje oczy zyskały nowe życie! Wreszcie czuję się pewnie bez makijażu. Efekt jest tak naturalny, że wszyscy myślą, że to moje własne rzęsy, tylko w lepszej wersji. Klaudia to czarodziejka!</div>
+          <div><div class="review-author">Katarzyna, 25 lat</div><div class="review-rating">★★★★★</div></div>
+        </div>
       </div>
-
-      <!-- GALERIA POD OPINIAMI -->
       <div class="reviews-gallery" aria-hidden="false">
         <img src="assets/img/recenzje_1.jpg" alt="Stylizacja rzęs - recenzja 1" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_2.jpg" alt="Stylizacja rzęs - recenzja 2" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_3.jpg" alt="Stylizacja rzęs - recenzja 3" loading="lazy" onerror="this.style.display='none'">
         <img src="assets/img/recenzje_4.jpg" alt="Stylizacja rzęs - recenzja 4" loading="lazy" onerror="this.style.display='none'">
       </div>
-
     </div>
   </section>
 
-  <!-- CENNIK -->
-  <section class="pricing-section fade-section" id="pricing">
-    <div class="pricing-container">
-      <div class="gold-line"></div>
-      <h2>Cennik Usług</h2>
-      <div class="price-list">
-        <div class="price-item">
-          <span class="service-name">Styl klasyczny</span>
-          <span class="service-price">150 zł</span>
-          <span class="service-duration">Czas: 2-3 godziny</span>
-        </div>
-        <div class="price-item">
-          <span class="service-name">Efekt objętości</span>
-          <span class="service-price">200 zł</span>
-          <span class="service-duration">Czas: 3-4 godziny</span>
-        </div>
-        <div class="price-item">
-          <span class="service-name">Rzęsy kocie oko</span>
-          <span class="service-price">180 zł</span>
-          <span class="service-duration">Czas: 2.5-3.5 godziny</span>
-        </div>
-        <div class="price-item">
-          <span class="service-name">Mega volume</span>
-          <span class="service-price">250 zł</span>
-          <span class="service-duration">Czas: 4-5 godzin</span>
-        </div>
-        <div class="price-item">
-          <span class="service-name">Konsultacja</span>
-          <span class="service-price">50 zł</span>
-          <span class="service-duration">Czas: 30 minut</span>
-        </div>
-        <div class="price-item">
-          <span class="service-name">Uzupełnienie</span>
-          <span class="service-price">100 zł</span>
-          <span class="service-duration">Czas: 1.5-2 godziny</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-section fade-section" id="faq">
+  <!-- DODANE FAQ -->
+  <section class="faq-section" id="faq">
     <div class="faq-container">
       <div class="gold-line"></div>
       <h2>Najczęstsze Pytania</h2>
-
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Ile trwa stylizacja rzęs? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Pełna stylizacja trwa zwykle od 2 do 3 godzin, w zależności od wybranej techniki i gęstości rzęs.</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Ile trwa stylizacja rzęs?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Pełna stylizacja trwa zwykle od 2 do 3 godzin, w zależności od wybranej techniki i gęstości rzęs. Efekt objętości może zająć 3-4 godziny, a mega volume nawet 4-5 godzin.
+        </div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Jak długo utrzymuje się stylizacja? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Przy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie. Zalecamy uzupełnienie co 2-3 tygodnie.</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Jak długo utrzymuje się stylizacja?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Przy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie. Zalecamy uzupełnienie co 2-3 tygodnie, aby zachować perfekcyjny wygląd. Naturalny cykl wzrostu rzęs to około 4-6 tygodni.
+        </div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Czy stylizacja rzęs jest bezpieczna? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Tak, używamy wyłącznie wysokiej jakości, hipoalergicznych produktów. Przed zabiegiem przeprowadzamy test na skórze.</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Czy stylizacja rzęs jest bezpieczna?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Tak, używamy wyłącznie wysokiej jakości, hipoalergicznych produktów od certyfikowanych producentów. Przed zabiegiem przeprowadzamy test na skórze, a podczas aplikacji dbamy o komfort i bezpieczeństwo klientki.
+        </div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Jak przygotować się do wizyty? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Prosimy przyjść bez makijażu oczu. Unikaj kawy przed wizytą, aby zminimalizować ruch powiek.</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Jak przygotować się do wizyty?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Prosimy przyjść bez makijażu oczu. Unikaj kawy i energetyków przed wizytą, aby zminimalizować ruch powiek. Jeśli nosisz soczewki kontaktowe, najlepiej zdjąć je przed zabiegiem.
+        </div>
       </div>
-
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Jak dbać o przedłużone rzęsy?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Przez pierwsze 24 godziny unikaj moczenia rzęs. Nie używaj tłustych demakijaży ani olejków w okolicy oczu. Do czyszczenia używaj specjalnych preparatów do rzęs. Unikaj pocierania oczu i śpij na plecach.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Czy mogę używać tuszu do rzęs?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Tak, ale tylko tusz wodoodporny i należy go delikatnie zmywać specjalnym płynem. Unikaj tuszy z włóknami i zawsze dokładnie zmywaj makijaż przed snem.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Co jeśli mam alergię?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Przed zabiegiem zawsze przeprowadzamy test alergiczny. Mamy również hipoalergiczne kleje dla osób z wrażliwymi oczami. Jeśli masz jakiekolwiek obawy, skonsultuj się z nami przed wizytą.
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- LOKALIZACJA -->
-  <section class="location-section fade-section" id="location">
-    <div class="location-container">
-      <div class="gold-line"></div>
-      <h2>Gdzie Nas Znajdziesz</h2>
-      <p style="color:#ddd; font-size:18px; margin-bottom:30px;">Zapraszamy do naszego salonu w dogodnej lokalizacji</p>
-
-      <div class="map-container">
-        <iframe src="https://maps.google.com/maps?q=Warszawa&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-
-      <div style="margin-top:30px; color:#ddd;">
-        <p><i class="fas fa-map-marker-alt" style="color:#d4af37; margin-right:10px;"></i> Ul. Przykładowa 123, 00-000 Warszawa</p>
-        <p><i class="fas fa-clock" style="color:#d4af37; margin-right:10px;"></i> Pon-Pt: 9:00-18:00, Sob: 10:00-16:00</p>
-        <p><i class="fas fa-phone" style="color:#d4af37; margin-right:10px;"></i> +48 123 456 789</p>
-      </div>
+  <!-- DODANE SOCIAL MEDIA W STOPCE -->
+  <div class="social-footer">
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="social-link" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="social-link" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
     </div>
-  </section>
-
-  <!-- SOCIAL -->
-  <section class="social-section fade-section">
-    <div class="social-container">
-      <div class="gold-line"></div>
-      <h2>Śledź Nas</h2>
-      <p style="color:#ddd; font-size:18px;">Bądź na bieżąco z naszymi najnowszymi realizacjami</p>
-      <div class="social-links">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <footer>
     &copy; 2025 Salon Klaudia – Wszystkie prawa zastrzeżone
   </footer>
 
   <script>
-    /* ===== Baner: ustaw background-image jeśli istnieje (inaczej użyj gradient fallback) ===== */
-    (function() {
-      const hero = document.getElementById('hero');
-      const bannerPath = 'assets/img/baner_klaudia.jpg';
-      const img = new Image();
-      img.onload = function() {
-        if (hero) {
-          hero.style.backgroundImage = `url('${bannerPath}')`;
-          hero.style.backgroundSize = 'cover';
-          hero.style.backgroundPosition = 'center';
-        }
-      };
-      img.onerror = function() {
-        // brak pliku -> gradient fallback pozostaje
-        console.warn('Baner nie znaleziony:', bannerPath);
-      };
-      img.src = bannerPath;
-    })();
+    // Loader
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loader').style.display = 'none';
+        }, 500);
+      }, 1000);
+    });
 
-    /* ===== Rotacja opinii co 12h (synchronizowana z zegarem) ===== */
+    // Rotacja opinii
     (function() {
       const reviewSets = [
         [
@@ -509,95 +1172,91 @@
           const card = document.createElement('div');
           card.className = 'review-card';
           card.innerHTML = `<div class="review-text">${item.text}</div>
-                            <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
+                              <div><div class="review-author">${item.author}</div><div class="review-rating">${item.rating}</div></div>`;
           reviewGrid.appendChild(card);
         });
       }
 
       function getCurrentSetIndex() {
         const msPer12h = 12 * 60 * 60 * 1000;
-        return Math.floor(Date.now() / msPer12h) % reviewSets.length;
+        const index = Math.floor(Date.now() / msPer12h) % reviewSets.length;
+        return index;
       }
 
       function initRotation() {
-        renderSet(getCurrentSetIndex());
-        // co godzinę sprawdzamy, czy trzeba zaktualizować (bez czekania 12h w jeden setInterval)
-        setInterval(() => renderSet(getCurrentSetIndex()), 60 * 60 * 1000);
+        renderSet( getCurrentSetIndex() );
+        setInterval(() => {
+          renderSet( getCurrentSetIndex() );
+        }, 60 * 60 * 1000);
       }
 
       initRotation();
     })();
 
-    /* ===== Formularz: mailto (prostota) ===== */
-    (function() {
-      const form = document.getElementById('reservation-form');
-      const successMessage = document.getElementById('form-success-message');
-      if (!form) return;
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value || '';
-        const email = document.getElementById('email').value || '';
-        const phone = document.getElementById('phone').value || '';
-        const service = document.getElementById('service').value || '';
-        const date = document.getElementById('date').value || '';
-        const message = document.getElementById('message').value || '';
+    // Formularz
+    const form = document.getElementById('reservation-form');
+    const successMessage = document.getElementById('form-success-message');
 
-        const subject = `Rezerwacja od: ${name}`;
-        const body = `Nowa rezerwacja wizyty:%0D%0A%0D%0AImię i nazwisko: ${name}%0D%0AEmail: ${email}%0D%0ATelefon: ${phone}%0D%0AUsługa: ${service}%0D%0AData: ${date}%0D%0AWiadomość: ${message}`;
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      successMessage.style.display = 'none';
 
-        window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const serviceElement = document.getElementById('service');
+      const service = serviceElement.options[serviceElement.selectedIndex].text;
+      const date = document.getElementById('date').value;
+      const message = document.getElementById('message').value;
 
-        if (successMessage) successMessage.style.display = 'block';
-        form.reset();
-      });
-    })();
+      let bodyContent = `Nowa rezerwacja wizyty:\n\n`;
+      bodyContent += `Imię i nazwisko: ${name}\n`;
+      bodyContent += `Email: ${email}\n`;
+      bodyContent += `Telefon: ${phone}\n`;
+      bodyContent += `Usługa: ${service}\n`;
 
-    /* ===== FAQ toggle ===== */
-    function toggleFAQ(el) {
-      const ans = el.nextElementSibling;
-      const ic = el.querySelector('i');
-      if (!ans) return;
-      if (ans.style.display === 'block') { ans.style.display = 'none'; if(ic) ic.style.transform='rotate(0deg)'; }
-      else { ans.style.display='block'; if(ic) ic.style.transform='rotate(180deg)'; }
+      if (date) {
+          bodyContent += `Preferowana data: ${date}\n`;
+      }
+      if (message) {
+          bodyContent += `Dodatkowe uwagi: ${message}\n`;
+      }
+
+      const subject = `Rezerwacja od: ${name}`;
+
+      window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
+
+      successMessage.style.display = 'block';
+      form.reset();
+    });
+
+    // FAQ toggle
+    function toggleFAQ(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('i');
+      
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+        element.classList.remove('active');
+      } else {
+        answer.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+        element.classList.add('active');
+      }
     }
 
-    /* ===== Smooth scroll for nav ===== */
-    document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', function(e) {
+    // Płynne przewijanie
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    /* ===== Fade-in sekcji (IntersectionObserver) ===== */
-    (function() {
-      const sections = document.querySelectorAll('.fade-section');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
         });
-      }, { threshold: 0.18 });
-      sections.forEach(s => obs.observe(s));
-    })();
-
-    /* ===== Cursor light effect ===== */
-    (function() {
-      let timer;
-      document.addEventListener('mousemove', e => {
-        document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-        document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-        document.body.classList.add('cursor-active');
-        clearTimeout(timer);
-        timer = setTimeout(() => document.body.classList.remove('cursor-active'), 1200);
       });
-    })();
-
-    /* ===== Loader hide on load ===== */
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      if (loader) loader.style.display = 'none';
     });
+
   </script>
 </body>
 </html>
