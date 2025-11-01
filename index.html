@@ -380,8 +380,9 @@
       to  { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-banner { position: relative; width: 100%; height: auto; max-height: 90vh; overflow: hidden; border-bottom: 2px solid #d4af37; }
-    #banner-claudia { width: 100%; height: auto; max-height: 90vh; object-fit: cover; display: block; margin: 0 auto; }
+    /* BANER - ZMIENIONE NA 50vh */
+    .hero-banner { position: relative; width: 100%; height: auto; max-height: 50vh; overflow: hidden; border-bottom: 2px solid #d4af37; }
+    #banner-claudia { width: 100%; height: auto; max-height: 50vh; object-fit: cover; display: block; margin: 0 auto; }
 
     .klaudia-glow {
       font-family: 'Great Vibes', cursive;
@@ -482,7 +483,7 @@
 
     @media (max-width: 480px) {
       .klaudia-glow { font-size: 2.2rem; }
-      .hero-banner { max-height: 60vh; }
+      .hero-banner { max-height: 40vh; }
       h2 { font-size: 28px; }
       .intro-section { padding: 60px 15px 30px; }
       section { padding: 40px 15px; }
@@ -764,14 +765,14 @@
     <div class="loader-spinner"></div>
   </div>
 
-  <!-- TWÓJ ORYGINALNY KOD -->
-<!-- BANER Z TWOIM ZDJĘCIEM -->
+  <!-- BANER Z TWOIM ZDJĘCIEM -->
 <section class="hero-banner fade-in-banner" aria-hidden="false">
   <img id="banner-claudia" src="https://i.ibb.co/YBKqWv7K/file-000000001c30620cb637b259b7601d71.png" alt="Klaudia – Salon stylizacji rzęs" loading="lazy">
   <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
     <div class="klaudia-glow" aria-hidden="true">Klaudia</div>
   </div>
 </section>
+
   <nav>
     <ul>
       <li><a href="#about-us">O nas</a></li>
@@ -799,6 +800,7 @@
       <button onclick="document.getElementById('booking-form').scrollIntoView({behavior: 'smooth'})">Zarezerwuj wizytę</button>
     </div>
   </section>
+
 <!-- GALERIA Z TWOIMI ZDJĘCIAMI -->
 <section class="photo-gallery" id="gallery">
   <div class="gallery-container">
@@ -824,6 +826,7 @@
     </div>
   </div>
 </section>
+
   <!-- DODANY CENNIK -->
   <section class="pricing-section" id="pricing">
     <div class="pricing-container">
