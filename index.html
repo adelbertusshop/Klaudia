@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* === PODSTAWOWE STYLE === */
     * {
       margin: 0;
       padding: 0;
@@ -25,7 +24,7 @@
 
     /* === NAVIGATION === */
     nav {
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       padding: 1rem 0;
       position: fixed;
       width: 100%;
@@ -70,13 +69,13 @@
     /* === HERO SECTION === */
     .hero {
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                  url('assets/img/hero-bg.jpg') center/cover;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 0 2rem;
+      margin-top: 80px;
     }
 
     .hero-content h1 {
@@ -115,10 +114,9 @@
       box-shadow: 0 10px 20px rgba(212,175,55,0.3);
     }
 
-    /* === ABOUT SECTION === */
-    .about {
+    /* === SECTIONS COMMON === */
+    section {
       padding: 5rem 2rem;
-      background: linear-gradient(45deg, #1a1a1a, #000);
     }
 
     .section-title {
@@ -138,6 +136,11 @@
       margin: 1rem auto;
     }
 
+    /* === ABOUT SECTION === */
+    .about {
+      background: linear-gradient(45deg, #1a1a1a, #000);
+    }
+
     .about-content {
       max-width: 1200px;
       margin: 0 auto;
@@ -152,21 +155,25 @@
       color: #ddd;
     }
 
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+
     .about-image {
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(212,175,55,0.2);
-    }
-
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
+      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      font-size: 1.2rem;
     }
 
     /* === SERVICES SECTION === */
     .services {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #000, #1a1a1a);
     }
 
@@ -202,16 +209,19 @@
       margin-bottom: 1rem;
     }
 
+    .service-card p {
+      color: #ddd;
+      margin-bottom: 1rem;
+    }
+
     .service-card .price {
       font-size: 1.5rem;
       color: #d4af37;
       font-weight: bold;
-      margin: 1rem 0;
     }
 
     /* === GALLERY SECTION === */
     .gallery {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #1a1a1a, #000);
     }
 
@@ -228,22 +238,16 @@
       overflow: hidden;
       position: relative;
       height: 300px;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
+      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      border: 2px solid #d4af37;
     }
 
     /* === PRICING SECTION === */
     .pricing {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #000, #1a1a1a);
     }
 
@@ -303,7 +307,6 @@
 
     /* === REVIEWS SECTION === */
     .reviews {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #1a1a1a, #000);
     }
 
@@ -351,7 +354,6 @@
 
     /* === CONTACT SECTION === */
     .contact {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #000, #1a1a1a);
     }
 
@@ -442,7 +444,6 @@
 
     /* === FAQ SECTION === */
     .faq {
-      padding: 5rem 2rem;
       background: linear-gradient(45deg, #1a1a1a, #000);
     }
 
@@ -563,7 +564,7 @@
     <div class="hero-content">
       <h1>Klaudia</h1>
       <p>Salon stylizacji rzęs</p>
-      <p>Piękno w każdym spojrzeniu</p>
+      <p>Piękno w każdym spojrzeniu ✨</p>
       <a href="#contact" class="cta-button">Umów wizytę</a>
     </div>
   </section>
@@ -573,11 +574,11 @@
     <h2 class="section-title">O Nas</h2>
     <div class="about-content">
       <div class="about-text">
-        <p>W salonie Klaudia specjalizujemy się w profesjonalnej stylizacji rzęs. Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało.</p>
+        <p>W salonie <strong>Klaudia</strong> specjalizujemy się w profesjonalnej stylizacji rzęs. Naszym celem jest podkreślenie Twojego naturalnego piękna – subtelnie, elegancko i trwało.</p>
         <p>Pracujemy wyłącznie na najwyższej jakości produktach, zapewniając komfort i perfekcyjny efekt. Zadbaj o swój wyjątkowy wygląd – umów się na wizytę i przekonaj się, jak niewiele potrzeba, by olśniewać!</p>
       </div>
       <div class="about-image">
-        <img src="assets/img/about.jpg" alt="Salon Klaudia">
+        Miejsce na zdjęcie salonu
       </div>
     </div>
   </section>
@@ -618,16 +619,16 @@
     <h2 class="section-title">Galeria</h2>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="assets/img/gallery1.jpg" alt="Stylizacja rzęs 1">
+        Zdjęcie realizacji 1
       </div>
       <div class="gallery-item">
-        <img src="assets/img/gallery2.jpg" alt="Stylizacja rzęs 2">
+        Zdjęcie realizacji 2
       </div>
       <div class="gallery-item">
-        <img src="assets/img/gallery3.jpg" alt="Stylizacja rzęs 3">
+        Zdjęcie realizacji 3
       </div>
       <div class="gallery-item">
-        <img src="assets/img/gallery4.jpg" alt="Stylizacja rzęs 4">
+        Zdjęcie realizacji 4
       </div>
     </div>
   </section>
