@@ -1050,10 +1050,86 @@
       }
     }
 
+    /* === STYLE REKLAM === */
+    .ad-section {
+      background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #d4af37;
+      border-bottom: 1px solid #d4af37;
+    }
+
+    .ad-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ad-container h3 {
+      color: #d4af37;
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .ad-content {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #d4af37;
+    }
+
+    /* Style dla wielu reklam (partners) */
+    .partners-section {
+      background: #111;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .partners-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .partners-container h3 {
+      color: #d4af37;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .partner-logo {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      border-color: #d4af37;
+      transform: translateY(-5px);
+    }
+
+    .partner-logo img {
+      max-width: 100%;
+      height: auto;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .partner-logo:hover img {
+      filter: grayscale(0%);
+    }
+
   </style>
 </head>
 <body>
-
   <!-- LOADER -->
   <div class="loader" id="loader">
     <div class="loader-spinner"></div>
