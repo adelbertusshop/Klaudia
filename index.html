@@ -8,11 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- React i Lucide Icons -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
   <style>
     /* === TWÓJ ORYGINALNY KOD - BEZ ZMIAN === */
     body {
@@ -999,6 +994,10 @@
       padding: 15px;
       background: #111;
       border-top: 1px solid #333;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
     }
 
     .quick-question {
@@ -1008,14 +1007,15 @@
       padding: 8px 12px;
       border-radius: 15px;
       font-size: 12px;
-      margin: 4px;
       cursor: pointer;
-      display: inline-block;
+      transition: all 0.3s ease;
+      text-align: center;
     }
 
     .quick-question:hover {
       background: #d4af37;
       color: #000;
+      transform: translateY(-2px);
     }
 
     .chatbot-toggle {
@@ -1227,36 +1227,36 @@
         <div class="form-grid">
             <div class="form-group">
                 <label for="name">Imię i nazwisko *</label>
-                <i class="fas fa-user"></i> <input type="text" id="name" name="name" required>
+                <i class="fas fa-user"></i> <input type="text" id="name" name="name" required placeholder="Twoje imię i nazwisko">
             </div>
             <div class="form-group">
                 <label for="email">Email *</label>
-                <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required>
+                <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required placeholder="Twój adres email">
             </div>
         </div>
         <div class="form-group">
           <label for="phone">Telefon *</label>
-          <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required>
+          <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required placeholder="123456789">
         </div>
         <div class="form-group">
           <label for="service">Usługa *</label>
           <i class="fas fa-star"></i> <select id="service" name="service" required>
             <option value="">Wybierz usługę</option>
-            <option value="styl-klasyczny">Styl klasyczny</option>
-            <option value="efekt-objetosci">Efekt objętości</option>
-            <option value="rzesy-kocie-oko">Rzęsy kocie oko</option>
-            <option value="mega-volume">Mega volume</option>
-            <option value="konsultacja">Konsultacja</option>
-            <option value="uzupelnienie">Uzupełnienie</option>
+            <option value="styl-klasyczny">Styl klasyczny - 150 zł</option>
+            <option value="efekt-objetosci">Efekt objętości - 200 zł</option>
+            <option value="rzesy-kocie-oko">Rzęsy kocie oko - 180 zł</option>
+            <option value="mega-volume">Mega volume - 250 zł</option>
+            <option value="konsultacja">Konsultacja - 50 zł</option>
+            <option value="uzupelnienie">Uzupełnienie - 100 zł</option>
           </select>
         </div>
         <div class="form-group">
           <label for="date">Preferowana data</label>
-          <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date">
+          <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
         </div>
         <div class="form-group">
           <label for="message">Dodatkowe uwagi</label>
-          <textarea id="message" name="message" placeholder="Dodatkowe informacje..."></textarea>
+          <textarea id="message" name="message" placeholder="Dodatkowe informacje, alergie, preferencje..."></textarea>
         </div>
         <button type="submit" class="submit-btn">
           <i class="fas fa-paper-plane"></i> Wyślij rezerwację
@@ -1448,7 +1448,7 @@
     <div class="chatbot-header">
       <div class="chatbot-title">
         <i class="fas fa-robot" style="color: #d4af37;"></i>
-        <span>Asystent Salonu Klaudia</span>
+        <span>Ekspert Stylizacji Rzęs</span>
       </div>
       <button class="chatbot-close" id="chatbotClose">
         <i class="fas fa-times"></i>
@@ -1460,18 +1460,21 @@
           <i class="fas fa-robot" style="color: #000; font-size: 16px;"></i>
         </div>
         <div class="message-content">
-          Witaj! Jestem asystentem Salonu Klaudia. Specjalizujemy się w profesjonalnej stylizacji rzęs. Jak mogę Ci pomóc? 😊
+          👋 Witaj! Jestem Twoim wirtualnym asystentem w świecie pięknych rzęs! 
+          <br><br>💫 Mogę pomóc z: stylizacjami, pielęgnacją, alergiami i rezerwacjami
         </div>
       </div>
     </div>
     <div class="quick-questions">
-      <div class="quick-question" onclick="askQuickQuestion('Ile kosztuje styl klasyczny?')">Cena stylu klasycznego</div>
-      <div class="quick-question" onclick="askQuickQuestion('Jak długo trwa stylizacja?')">Czas trwania</div>
-      <div class="quick-question" onclick="askQuickQuestion('Jakie są godziny otwarcia?')">Godziny otwarcia</div>
-      <div class="quick-question" onclick="askQuickQuestion('Jak umówić się na wizytę?')">Rezerwacja wizyty</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jak dbać o przedłużone rzęsy?')">💅 Pielęgnacja</div>
+      <div class="quick-question" onclick="askQuickQuestion('Mam alergię - czy mogę zrobić rzęsy?')">🤧 Alergie</div>
+      <div class="quick-question" onclick="askQuickQuestion('Czy mogę używać tuszu do rzęs?')">💄 Makijaż</div>
+      <div class="quick-question" onclick="askQuickQuestion('Kiedy trzeba zrobić uzupełnienie?')">🔄 Uzupełnienie</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jaka jest różnica między stylami?')">🎨 Style rzęs</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jak przygotować się do wizyty?')">📝 Przygotowanie</div>
     </div>
     <div class="chatbot-input">
-      <input type="text" id="chatbotInput" placeholder="Zadaj pytanie..." onkeypress="handleChatbotKeyPress(event)">
+      <input type="text" id="chatbotInput" placeholder="Zadaj pytanie o rzęsy..." onkeypress="handleChatbotKeyPress(event)">
       <button class="chatbot-send" onclick="sendChatbotMessage()">
         <i class="fas fa-paper-plane"></i>
       </button>
@@ -1540,7 +1543,7 @@
       initRotation();
     })();
 
-    // Formularz
+    // Formularz - AUTOMATYCZNE WYSYŁANIE NA EMAIL
     const form = document.getElementById('reservation-form');
     const successMessage = document.getElementById('form-success-message');
 
@@ -1556,25 +1559,43 @@
       const date = document.getElementById('date').value;
       const message = document.getElementById('message').value;
 
-      let bodyContent = `Nowa rezerwacja wizyty:\n\n`;
+      // Tworzenie treści emaila
+      let bodyContent = `NOWA REZERWACJA WIZYTY - SALON KLAUDIA\n\n`;
+      bodyContent += `===============================\n`;
+      bodyContent += `DANE KLIENTKI:\n`;
       bodyContent += `Imię i nazwisko: ${name}\n`;
       bodyContent += `Email: ${email}\n`;
       bodyContent += `Telefon: ${phone}\n`;
-      bodyContent += `Usługa: ${service}\n`;
-
+      bodyContent += `===============================\n`;
+      bodyContent += `USŁUGA:\n`;
+      bodyContent += `${service}\n`;
+      
       if (date) {
           bodyContent += `Preferowana data: ${date}\n`;
       }
+      
       if (message) {
-          bodyContent += `Dodatkowe uwagi: ${message}\n`;
+          bodyContent += `===============================\n`;
+          bodyContent += `DODATKOWE INFORMACJE:\n`;
+          bodyContent += `${message}\n`;
       }
+      
+      bodyContent += `===============================\n`;
+      bodyContent += `Data zgłoszenia: ${new Date().toLocaleString('pl-PL')}\n`;
 
       const subject = `Rezerwacja od: ${name}`;
-
+      
+      // Automatyczne przekierowanie na email
       window.location.href = `mailto:klaudiaganowska9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
 
+      // Pokazanie komunikatu sukcesu
       successMessage.style.display = 'block';
-      form.reset();
+      
+      // Czyszczenie formularza po 5 sekundach
+      setTimeout(() => {
+        form.reset();
+        successMessage.style.display = 'none';
+      }, 5000);
     });
 
     // FAQ toggle
@@ -1636,28 +1657,48 @@
     const chatbotMessages = document.getElementById('chatbotMessages');
     const chatbotInput = document.getElementById('chatbotInput');
 
-    // Baza wiedzy czatbota o salonie
+    // Baza wiedzy czatbota
     const salonKnowledge = {
       services: {
-        "styl klasyczny": { price: "150 zł", time: "2-3 godziny", description: "Naturalne przedłużenie rzęs z dopasowaniem do kształtu oka" },
-        "efekt objętości": { price: "200 zł", time: "3-4 godziny", description: "Spektakularna gęstość z efektem 'wow'" },
-        "rzęsy kocie oko": { price: "180 zł", time: "2.5-3.5 godziny", description: "Dramatyczny efekt wydłużenia z uwodzicielskim kształtem migdałowym" },
-        "mega volume": { price: "250 zł", time: "4-5 godzin", description: "Maksymalna gęstość dla najodważniejszego spojrzenia" },
-        "konsultacja": { price: "50 zł", time: "30 minut", description: "Analiza potrzeb i dopasowanie stylu" },
-        "uzupełnienie": { price: "100 zł", time: "1.5-2 godziny", description: "Uzupełnienie wypadających rzęs z korektą kształtu" }
+        "styl klasyczny": { price: "150 zł", time: "2-3 godziny", description: "Naturalne przedłużenie - 1:1 (jedna rzęsa naturalna : jedna przedłużana)" },
+        "efekt objętości": { price: "200 zł", time: "3-4 godziny", description: "2D-3D (2-3 rzęsy na 1 naturalną) - spektakularna gęstość" },
+        "rzęsy kocie oko": { price: "180 zł", time: "2.5-3.5 godziny", description: "Efekt wydłużenia w kącikach oczu - uwodzicielski kształt migdałowy" },
+        "mega volume": { price: "250 zł", time: "4-5 godzin", description: "4D-6D (4-6 rzęs na 1 naturalną) - maksymalna gęstość" },
+        "konsultacja": { price: "50 zł", time: "30 minut", description: "Analiza potrzeb, dobór stylu, test alergiczny" },
+        "uzupełnienie": { price: "100 zł", time: "1.5-2 godziny", description: "Uzupełnienie wypadających rzęs, korekta kształtu" }
       },
-      contact: {
-        email: "klaudiaganowska9@gmail.com",
-        phone: "+48 123 456 789",
-        address: "Ul. Przykładowa 123, 00-000 Warszawa",
-        hours: "Poniedziałek - Piątek: 9:00-18:00, Sobota: 10:00-16:00"
+      
+      care: {
+        daily: [
+          "Czesz rzęsy specjalną szczoteczką rano i wieczorem",
+          "Unikaj pocierania oczu - używaj chusteczek zamiast palców",
+          "Śpij na plecach lub na boku - unikaj spania na brzuchu"
+        ],
+        cleaning: [
+          "Pierwsze 24h: absolutny zakaz moczenia rzęs",
+          "Używaj specjalnego płynu do demakijażu oczu (bez olejów)",
+          "Delikatnie osuszaj ręcznikiem papierowym - nie trzyj",
+          "Czyszcz codziennie nawet bez makijażu"
+        ],
+        products: [
+          "✅ DOZWOLONE: bezolejowe płyny, żele do mycia twarzy",
+          "✅ DOZWOLONE: wodoodporny tusz (zmywany specjalnym płynem)",
+          "❌ ZAKAZANE: olejki, tłuste kremy, płyny micelarne z olejami",
+          "❌ ZAKAZANE: zmywacze do paznokci, produkty na bazie alkoholu"
+        ]
       },
-      faq: {
-        "ile trwa": "Pełna stylizacja trwa 2-5 godzin w zależności od wybranej techniki",
-        "jak długo się utrzymuje": "Przy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie",
-        "czy jest bezpieczna": "Tak, używamy wysokiej jakości hipoalergicznych produktów",
-        "przygotowanie": "Prosimy przyjść bez makijażu oczu i unikać kawy przed wizytą",
-        "pielęgnacja": "Przez 24h unikaj moczenia, używaj specjalnych preparatów do czyszczenia"
+      
+      allergies: {
+        prevention: [
+          "Przed każdą wizytą wykonujemy test alergiczny",
+          "Używamy hipoalergicznych klejów od certyfikowanych producentów",
+          "Mamy różne marki klejów dla wrażliwych oczu"
+        ],
+        symptoms: [
+          "Łzawienie, swędzenie, zaczerwienienie oczu",
+          "Opuchlizna powiek w ciągu 24-48 godzin",
+          "Dyskomfort, uczucie 'piasku' pod powiekami"
+        ]
       }
     };
 
@@ -1713,7 +1754,7 @@
       
       if (sender === 'ai') {
         avatar.innerHTML = '<i class="fas fa-robot" style="color: #000; font-size: 16px;"></i>';
-        content.textContent = text;
+        content.innerHTML = text.replace(/\n/g, '<br>');
       } else {
         avatar.innerHTML = '<i class="fas fa-user" style="color: #000; font-size: 16px;"></i>';
         content.textContent = text;
@@ -1760,55 +1801,69 @@
     function generateAIResponse(userMessage) {
       const message = userMessage.toLowerCase();
       
-      // Rozpoznawanie intencji
+      // PIELĘGNACJA
+      if (message.includes('pielęgnacj') || message.includes('dbac') || message.includes('utrzymać')) {
+        return `🛁 PIELĘGNACJA PRZEDŁUŻONYCH RZĘS:\n\n` +
+               `📅 CODZIENNIE:\n${salonKnowledge.care.daily.map(item => `• ${item}`).join('\n')}\n\n` +
+               `🧼 CZYSZCZENIE:\n${salonKnowledge.care.cleaning.map(item => `• ${item}`).join('\n')}\n\n` +
+               `💎 PRODUKTY:\n${salonKnowledge.care.products.map(item => `• ${item}`).join('\n')}`;
+      }
+      
+      // ALERGIE
+      if (message.includes('alergi') || message.includes('uczul') || message.includes('swędzi')) {
+        return `🤧 ALERGIE I WRAŻLIWE OCZY:\n\n` +
+               `🛡️ ZAPOBIEGANIE:\n${salonKnowledge.allergies.prevention.map(item => `• ${item}`).join('\n')}\n\n` +
+               `⚠️ OBJAWY ALERGII:\n${salonKnowledge.allergies.symptoms.map(item => `• ${item}`).join('\n')}\n\n` +
+               `💡 Rozwiązanie: Przed wizytą zawsze robimy test alergiczny!`;
+      }
+      
+      // CENY
       if (message.includes('cen') || message.includes('koszt') || message.includes('ile kosztuje')) {
-        if (message.includes('klasyczn')) {
-          return `Styl klasyczny kosztuje ${salonKnowledge.services["styl klasyczny"].price} i trwa ${salonKnowledge.services["styl klasyczny"].time}. ${salonKnowledge.services["styl klasyczny"].description}`;
-        } else if (message.includes('objętoś') || message.includes('volume')) {
-          return `Efekt objętości kosztuje ${salonKnowledge.services["efekt objętości"].price} i trwa ${salonKnowledge.services["efekt objętości"].time}. ${salonKnowledge.services["efekt objętości"].description}`;
-        } else if (message.includes('koci') || message.includes('kocie')) {
-          return `Rzęsy kocie oko kosztują ${salonKnowledge.services["rzęsy kocie oko"].price} i trwa ${salonKnowledge.services["rzęsy kocie oko"].time}. ${salonKnowledge.services["rzęsy kocie oko"].description}`;
-        } else if (message.includes('mega')) {
-          return `Mega volume kosztuje ${salonKnowledge.services["mega volume"].price} i trwa ${salonKnowledge.services["mega volume"].time}. ${salonKnowledge.services["mega volume"].description}`;
-        } else {
-          return `Oto nasz cennik:\n\n• Styl klasyczny: ${salonKnowledge.services["styl klasyczny"].price}\n• Efekt objętości: ${salonKnowledge.services["efekt objętości"].price}\n• Rzęsy kocie oko: ${salonKnowledge.services["rzęsy kocie oko"].price}\n• Mega volume: ${salonKnowledge.services["mega volume"].price}\n• Konsultacja: ${salonKnowledge.services["konsultacja"].price}\n• Uzupełnienie: ${salonKnowledge.services["uzupełnienie"].price}\n\nKtóra usługa Cię interesuje?`;
+        let response = `💰 CENNIK USŁUG:\n\n`;
+        for (const [service, details] of Object.entries(salonKnowledge.services)) {
+          response += `✨ ${service.toUpperCase()}: ${details.price} (${details.time})\n`;
+          response += `• ${details.description}\n\n`;
         }
+        return response;
       }
       
-      if (message.includes('czas') || message.includes('jak długo') || message.includes('trwa')) {
-        return `Czas stylizacji zależy od techniki:\n\n• Styl klasyczny: ${salonKnowledge.services["styl klasyczny"].time}\n• Efekt objętości: ${salonKnowledge.services["efekt objętości"].time}\n• Rzęsy kocie oko: ${salonKnowledge.services["rzęsy kocie oko"].time}\n• Mega volume: ${salonKnowledge.services["mega volume"].time}\n• Konsultacja: ${salonKnowledge.services["konsultacja"].time}\n• Uzupełnienie: ${salonKnowledge.services["uzupełnienie"].time}`;
+      // MAKIJAŻ
+      if (message.includes('tusz') || message.includes('makijaż')) {
+        return `💄 MAKIJAŻ Z PRZEDŁUŻONYMI RZĘSAMI:\n\n` +
+               `✅ Tylko wodoodporny tusz aplikowany OD KOŃCÓW do nasady\n` +
+               `✅ Zmywaj delikatnie specjalnym płynem bez pocierania\n` +
+               `❌ Unikaj tuszy z włóknami i objętościowych\n` +
+               `💡 Wskazówka: Przedłużone rzęsy często zastępują potrzebę tuszowania!`;
       }
       
-      if (message.includes('godzin') || message.includes('otwarc') || message.includes('kiedy otwarte')) {
-        return `Godziny otwarcia salonu:\n\n${salonKnowledge.contact.hours}\n\nZapraszamy! 🕒`;
+      // PRZYGOTOWANIE
+      if (message.includes('przygotować') || message.includes('przed wizytą')) {
+        return `📝 PRZYGOTOWANIE DO WIZYTY:\n\n` +
+               `• Przyjdź bez makijażu oczu\n` +
+               `• Zdejmij soczewki kontaktowe\n` +
+               `• Unikaj kawy i energetyków\n` +
+               `• Zjedz lekki posiłek przed wizytą\n` +
+               `• Poinformuj o alergiach na kleje/żywicę`;
       }
       
-      if (message.includes('kontakt') || message.includes('telefon') || message.includes('email') || message.includes('adres')) {
-        return `Skontaktuj się z nami:\n\n📧 Email: ${salonKnowledge.contact.email}\n📞 Telefon: ${salonKnowledge.contact.phone}\n📍 Adres: ${salonKnowledge.contact.address}\n\nChętnie odpowiemy na wszystkie pytania!`;
+      // REZERWACJA
+      if (message.includes('rezerwacj') || message.includes('umówić') || message.includes('zapisać')) {
+        return `📅 REZERWACJA WIZYTY:\n\n` +
+               `1. Wypełnij formularz na stronie\n` +
+               `2. Zadzwoń: +48 123 456 789\n` +
+               `3. Email: klaudiaganowska9@gmail.com\n\n` +
+               `Godziny otwarcia:\nPon-Pt: 9:00-18:00\nSobota: 10:00-16:00`;
       }
       
-      if (message.includes('rezerwacj') || message.includes('umówić') || message.includes('wizyt') || message.includes('zapisać')) {
-        return `Aby umówić się na wizytę:\n\n1. Możesz wypełnić formularz rezerwacyjny na stronie\n2. Zadzwonić pod numer: ${salonKnowledge.contact.phone}\n3. Napisać email na: ${salonKnowledge.contact.email}\n\nKtóra usługa Cię interesuje? Pomogę dobrać najlepszą opcję! 💫`;
-      }
-      
-      if (message.includes('przygotować') || message.includes('przygotowanie')) {
-        return `Przed wizytą prosimy:\n\n• Przyjść bez makijażu oczu\n• Unikać kawy i energetyków\n• Zdjąć soczewki kontaktowe\n\nDzięki temu zabieg będzie komfortowy i efektywny! ✨`;
-      }
-      
-      if (message.includes('pielęgnacj') || message.includes('dbać') || message.includes('utrzymać')) {
-        return `Aby przedłużone rzęsy służyły jak najdłużej:\n\n• Przez 24h unikaj moczenia\n• Używaj specjalnych preparatów do czyszczenia\n• Unikaj tłustych demakijaży\n• Nie pocieraj oczu\n• Śpij na plecach\n\nPrzy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie!`;
-      }
-      
-      if (message.includes('bezpieczeństw') || message.includes('alergi') || message.includes('uczul')) {
-        return `Tak, stylizacja jest bezpieczna! 🛡️\n\n• Używamy hipoalergicznych produktów\n• Przed zabiegiem przeprowadzamy test\n• Mamy kleje dla wrażliwych oczu\n• Wszystkie materiały są certyfikowane\n\nMożesz czuć się komfortowo i bezpiecznie!`;
-      }
-      
-      if (message.includes('cześć') || message.includes('hej') || message.includes('witam') || message.includes('dzień dobry')) {
-        return `Witaj! 😊 Jestem asystentem Salonu Klaudia. Specjalizujemy się w profesjonalnej stylizacji rzęs. Mogę pomóc Ci z:\n\n• Informacjami o usługach i cenach\n• Rezerwacją wizyty\n• Pytaniami o pielęgnację\n• Wszystkim co dotyczy pięknych rzęs!\n\nO co chcesz zapytać?`;
-      }
-      
-      // Domyślna odpowiedź
-      return `Dziękuję za pytanie! 🤗 Jako salon specjalizujący się w stylizacji rzęs, mogę pomóc Ci z:\n\n• Informacjami o usługach i cenach\n• Czasem trwania zabiegów\n• Rezerwacją wizyty\n• Pytaniami o pielęgnację rzęs\n• Godzinami otwarcia\n\nO co konkretnie chcesz zapytać?`;
+      // DOMYŚLNA ODPOWIEDŹ
+      return `🤔 Nie jestem pewien o co pytasz. Mogę pomóc Ci z:\n\n` +
+             `• Informacjami o usługach i cenach\n` +
+             `• Pielęgnacją przedłużonych rzęs\n` +
+             `• Alergiami i wrażliwymi oczami\n` +
+             `• Makijażem z przedłużonymi rzęsami\n` +
+             `• Przygotowaniem do wizyty\n` +
+             `• Rezerwacją terminu\n\n` +
+             `O co konkretnie chcesz zapytać? 😊`;
     }
 
   </script>
