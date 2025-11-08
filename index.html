@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- React i Lucide Icons -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
   <style>
     /* === TWÓJ ORYGINALNY KOD - BEZ ZMIAN === */
     body {
@@ -822,6 +827,229 @@
       box-shadow: 0 5px 15px rgba(212,175,55,0.4);
     }
 
+    /* === STYLE CZATBOTA === */
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 380px;
+      height: 600px;
+      background: #000;
+      border: 2px solid #d4af37;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .chatbot-header {
+      background: #111;
+      padding: 15px 20px;
+      border-bottom: 1px solid #d4af37;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chatbot-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f0e6b2;
+      font-weight: 500;
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: #d4af37;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: #000;
+    }
+
+    .message-bubble {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .message-bubble.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble.user .message-content {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .message-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .message-bubble.ai .message-avatar {
+      background: #d4af37;
+    }
+
+    .message-bubble.user .message-avatar {
+      background: #d4af37;
+    }
+
+    .message-content {
+      background: #1a1a1a;
+      padding: 12px 16px;
+      border-radius: 18px;
+      max-width: 70%;
+      border: 1px solid #333;
+    }
+
+    .message-bubble.user .message-content {
+      border-color: #d4af37;
+    }
+
+    .chatbot-input {
+      padding: 15px;
+      background: #111;
+      border-top: 1px solid #333;
+      display: flex;
+      gap: 10px;
+    }
+
+    .chatbot-input input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #444;
+      border-radius: 25px;
+      background: #000;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .chatbot-input input:focus {
+      outline: none;
+      border-color: #d4af37;
+    }
+
+    .chatbot-send {
+      background: #d4af37;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .chatbot-send:hover {
+      background: #f0c857;
+    }
+
+    .chatbot-send:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: #d4af37;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+
+    .quick-questions {
+      padding: 15px;
+      background: #111;
+      border-top: 1px solid #333;
+    }
+
+    .quick-question {
+      background: #1a1a1a;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      padding: 8px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      margin: 4px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .quick-question:hover {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #d4af37;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+      z-index: 999;
+    }
+
+    .chatbot-toggle:hover {
+      background: #f0c857;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .chatbot-container {
+        width: calc(100vw - 40px);
+        height: 70vh;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1211,6 +1439,45 @@
     &copy; 2025 Salon Klaudia – Wszystkie prawa zastrzeżone
   </footer>
 
+  <!-- CZATBOT -->
+  <button class="chatbot-toggle" id="chatbotToggle">
+    <i class="fas fa-comments" style="font-size: 24px;"></i>
+  </button>
+
+  <div class="chatbot-container" id="chatbotContainer" style="display: none;">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <i class="fas fa-robot" style="color: #d4af37;"></i>
+        <span>Asystent Salonu Klaudia</span>
+      </div>
+      <button class="chatbot-close" id="chatbotClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="message-bubble ai">
+        <div class="message-avatar">
+          <i class="fas fa-robot" style="color: #000; font-size: 16px;"></i>
+        </div>
+        <div class="message-content">
+          Witaj! Jestem asystentem Salonu Klaudia. Specjalizujemy się w profesjonalnej stylizacji rzęs. Jak mogę Ci pomóc? 😊
+        </div>
+      </div>
+    </div>
+    <div class="quick-questions">
+      <div class="quick-question" onclick="askQuickQuestion('Ile kosztuje styl klasyczny?')">Cena stylu klasycznego</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jak długo trwa stylizacja?')">Czas trwania</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jakie są godziny otwarcia?')">Godziny otwarcia</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jak umówić się na wizytę?')">Rezerwacja wizyty</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Zadaj pytanie..." onkeypress="handleChatbotKeyPress(event)">
+      <button class="chatbot-send" onclick="sendChatbotMessage()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
   <script>
     // Loader
     window.addEventListener('load', function() {
@@ -1361,6 +1628,188 @@
         hamburger.classList.remove('active');
       }
     });
+
+    // ===== CZATBOT =====
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+
+    // Baza wiedzy czatbota o salonie
+    const salonKnowledge = {
+      services: {
+        "styl klasyczny": { price: "150 zł", time: "2-3 godziny", description: "Naturalne przedłużenie rzęs z dopasowaniem do kształtu oka" },
+        "efekt objętości": { price: "200 zł", time: "3-4 godziny", description: "Spektakularna gęstość z efektem 'wow'" },
+        "rzęsy kocie oko": { price: "180 zł", time: "2.5-3.5 godziny", description: "Dramatyczny efekt wydłużenia z uwodzicielskim kształtem migdałowym" },
+        "mega volume": { price: "250 zł", time: "4-5 godzin", description: "Maksymalna gęstość dla najodważniejszego spojrzenia" },
+        "konsultacja": { price: "50 zł", time: "30 minut", description: "Analiza potrzeb i dopasowanie stylu" },
+        "uzupełnienie": { price: "100 zł", time: "1.5-2 godziny", description: "Uzupełnienie wypadających rzęs z korektą kształtu" }
+      },
+      contact: {
+        email: "klaudiaganowska9@gmail.com",
+        phone: "+48 123 456 789",
+        address: "Ul. Przykładowa 123, 00-000 Warszawa",
+        hours: "Poniedziałek - Piątek: 9:00-18:00, Sobota: 10:00-16:00"
+      },
+      faq: {
+        "ile trwa": "Pełna stylizacja trwa 2-5 godzin w zależności od wybranej techniki",
+        "jak długo się utrzymuje": "Przy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie",
+        "czy jest bezpieczna": "Tak, używamy wysokiej jakości hipoalergicznych produktów",
+        "przygotowanie": "Prosimy przyjść bez makijażu oczu i unikać kawy przed wizytą",
+        "pielęgnacja": "Przez 24h unikaj moczenia, używaj specjalnych preparatów do czyszczenia"
+      }
+    };
+
+    chatbotToggle.addEventListener('click', function() {
+      chatbotContainer.style.display = 'flex';
+      chatbotToggle.style.display = 'none';
+    });
+
+    chatbotClose.addEventListener('click', function() {
+      chatbotContainer.style.display = 'none';
+      chatbotToggle.style.display = 'flex';
+    });
+
+    function askQuickQuestion(question) {
+      chatbotInput.value = question;
+      sendChatbotMessage();
+    }
+
+    function handleChatbotKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendChatbotMessage();
+      }
+    }
+
+    function sendChatbotMessage() {
+      const message = chatbotInput.value.trim();
+      if (!message) return;
+
+      // Dodaj wiadomość użytkownika
+      addMessage(message, 'user');
+      chatbotInput.value = '';
+
+      // Pokazuj wskaźnik pisania
+      showTypingIndicator();
+
+      // Generuj odpowiedź po krótkim opóźnieniu
+      setTimeout(() => {
+        removeTypingIndicator();
+        const response = generateAIResponse(message);
+        addMessage(response, 'ai');
+      }, 1000 + Math.random() * 1000);
+    }
+
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message-bubble ${sender}`;
+      
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      
+      if (sender === 'ai') {
+        avatar.innerHTML = '<i class="fas fa-robot" style="color: #000; font-size: 16px;"></i>';
+        content.textContent = text;
+      } else {
+        avatar.innerHTML = '<i class="fas fa-user" style="color: #000; font-size: 16px;"></i>';
+        content.textContent = text;
+      }
+      
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(content);
+      chatbotMessages.appendChild(messageDiv);
+      
+      // Przewiń na dół
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message-bubble ai';
+      typingDiv.id = 'typing-indicator';
+      
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.innerHTML = '<i class="fas fa-robot" style="color: #000; font-size: 16px;"></i>';
+      
+      const content = document.createElement('div');
+      content.className = 'typing-indicator';
+      content.innerHTML = `
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      `;
+      
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(content);
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    function generateAIResponse(userMessage) {
+      const message = userMessage.toLowerCase();
+      
+      // Rozpoznawanie intencji
+      if (message.includes('cen') || message.includes('koszt') || message.includes('ile kosztuje')) {
+        if (message.includes('klasyczn')) {
+          return `Styl klasyczny kosztuje ${salonKnowledge.services["styl klasyczny"].price} i trwa ${salonKnowledge.services["styl klasyczny"].time}. ${salonKnowledge.services["styl klasyczny"].description}`;
+        } else if (message.includes('objętoś') || message.includes('volume')) {
+          return `Efekt objętości kosztuje ${salonKnowledge.services["efekt objętości"].price} i trwa ${salonKnowledge.services["efekt objętości"].time}. ${salonKnowledge.services["efekt objętości"].description}`;
+        } else if (message.includes('koci') || message.includes('kocie')) {
+          return `Rzęsy kocie oko kosztują ${salonKnowledge.services["rzęsy kocie oko"].price} i trwa ${salonKnowledge.services["rzęsy kocie oko"].time}. ${salonKnowledge.services["rzęsy kocie oko"].description}`;
+        } else if (message.includes('mega')) {
+          return `Mega volume kosztuje ${salonKnowledge.services["mega volume"].price} i trwa ${salonKnowledge.services["mega volume"].time}. ${salonKnowledge.services["mega volume"].description}`;
+        } else {
+          return `Oto nasz cennik:\n\n• Styl klasyczny: ${salonKnowledge.services["styl klasyczny"].price}\n• Efekt objętości: ${salonKnowledge.services["efekt objętości"].price}\n• Rzęsy kocie oko: ${salonKnowledge.services["rzęsy kocie oko"].price}\n• Mega volume: ${salonKnowledge.services["mega volume"].price}\n• Konsultacja: ${salonKnowledge.services["konsultacja"].price}\n• Uzupełnienie: ${salonKnowledge.services["uzupełnienie"].price}\n\nKtóra usługa Cię interesuje?`;
+        }
+      }
+      
+      if (message.includes('czas') || message.includes('jak długo') || message.includes('trwa')) {
+        return `Czas stylizacji zależy od techniki:\n\n• Styl klasyczny: ${salonKnowledge.services["styl klasyczny"].time}\n• Efekt objętości: ${salonKnowledge.services["efekt objętości"].time}\n• Rzęsy kocie oko: ${salonKnowledge.services["rzęsy kocie oko"].time}\n• Mega volume: ${salonKnowledge.services["mega volume"].time}\n• Konsultacja: ${salonKnowledge.services["konsultacja"].time}\n• Uzupełnienie: ${salonKnowledge.services["uzupełnienie"].time}`;
+      }
+      
+      if (message.includes('godzin') || message.includes('otwarc') || message.includes('kiedy otwarte')) {
+        return `Godziny otwarcia salonu:\n\n${salonKnowledge.contact.hours}\n\nZapraszamy! 🕒`;
+      }
+      
+      if (message.includes('kontakt') || message.includes('telefon') || message.includes('email') || message.includes('adres')) {
+        return `Skontaktuj się z nami:\n\n📧 Email: ${salonKnowledge.contact.email}\n📞 Telefon: ${salonKnowledge.contact.phone}\n📍 Adres: ${salonKnowledge.contact.address}\n\nChętnie odpowiemy na wszystkie pytania!`;
+      }
+      
+      if (message.includes('rezerwacj') || message.includes('umówić') || message.includes('wizyt') || message.includes('zapisać')) {
+        return `Aby umówić się na wizytę:\n\n1. Możesz wypełnić formularz rezerwacyjny na stronie\n2. Zadzwonić pod numer: ${salonKnowledge.contact.phone}\n3. Napisać email na: ${salonKnowledge.contact.email}\n\nKtóra usługa Cię interesuje? Pomogę dobrać najlepszą opcję! 💫`;
+      }
+      
+      if (message.includes('przygotować') || message.includes('przygotowanie')) {
+        return `Przed wizytą prosimy:\n\n• Przyjść bez makijażu oczu\n• Unikać kawy i energetyków\n• Zdjąć soczewki kontaktowe\n\nDzięki temu zabieg będzie komfortowy i efektywny! ✨`;
+      }
+      
+      if (message.includes('pielęgnacj') || message.includes('dbać') || message.includes('utrzymać')) {
+        return `Aby przedłużone rzęsy służyły jak najdłużej:\n\n• Przez 24h unikaj moczenia\n• Używaj specjalnych preparatów do czyszczenia\n• Unikaj tłustych demakijaży\n• Nie pocieraj oczu\n• Śpij na plecach\n\nPrzy prawidłowej pielęgnacji stylizacja utrzymuje się 3-4 tygodnie!`;
+      }
+      
+      if (message.includes('bezpieczeństw') || message.includes('alergi') || message.includes('uczul')) {
+        return `Tak, stylizacja jest bezpieczna! 🛡️\n\n• Używamy hipoalergicznych produktów\n• Przed zabiegiem przeprowadzamy test\n• Mamy kleje dla wrażliwych oczu\n• Wszystkie materiały są certyfikowane\n\nMożesz czuć się komfortowo i bezpiecznie!`;
+      }
+      
+      if (message.includes('cześć') || message.includes('hej') || message.includes('witam') || message.includes('dzień dobry')) {
+        return `Witaj! 😊 Jestem asystentem Salonu Klaudia. Specjalizujemy się w profesjonalnej stylizacji rzęs. Mogę pomóc Ci z:\n\n• Informacjami o usługach i cenach\n• Rezerwacją wizyty\n• Pytaniami o pielęgnację\n• Wszystkim co dotyczy pięknych rzęs!\n\nO co chcesz zapytać?`;
+      }
+      
+      // Domyślna odpowiedź
+      return `Dziękuję za pytanie! 🤗 Jako salon specjalizujący się w stylizacji rzęs, mogę pomóc Ci z:\n\n• Informacjami o usługach i cenach\n• Czasem trwania zabiegów\n• Rezerwacją wizyty\n• Pytaniami o pielęgnację rzęs\n• Godzinami otwarcia\n\nO co konkretnie chcesz zapytać?`;
+    }
 
   </script>
 </body>
