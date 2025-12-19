@@ -1425,48 +1425,84 @@
     <div class="form-container">
       <div class="gold-line"></div>
       <h2>Zarezerwuj Wizytę</h2>
-      <form id="reservation-form">
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="name">Imię i nazwisko *</label>
-                <i class="fas fa-user"></i> <input type="text" id="name" name="name" required placeholder="Twoje imię i nazwisko">
-            </div>
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required placeholder="Twój adres email">
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="phone">Telefon *</label>
-          <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required placeholder="123456789">
-        </div>
-        <div class="form-group">
-          <label for="service">Usługa *</label>
-          <i class="fas fa-star"></i> <select id="service" name="service" required>
-            <option value="">Wybierz usługę</option>
-            <option value="styl-klasyczny">Styl klasyczny - 150 zł</option>
-            <option value="efekt-objetosci">Efekt objętości - 200 zł</option>
-            <option value="rzesy-kocie-oko">Rzęsy kocie oko - 180 zł</option>
-            <option value="mega-volume">Mega volume - 250 zł</option>
-            <option value="konsultacja">Konsultacja - 50 zł</option>
-            <option value="uzupelnienie">Uzupełnienie - 100 zł</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="date">Preferowana data</label>
-          <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
-        </div>
-        <div class="form-group">
-          <label for="message">Dodatkowe uwagi</label>
-          <textarea id="message" name="message" placeholder="Dodatkowe informacje, alergie, preferencje..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn">
-          <i class="fas fa-paper-plane"></i> Wyślij rezerwację
-        </button>
-        <p class="message success" id="form-success-message">
-          Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
+      
+      <!-- PANEL WYBORU METODY KONTAKTU - ROZWIĄZANIE 5 -->
+      <div style="margin-bottom: 40px;">
+        <p style="color: #f0e6b2; margin-bottom: 20px; font-size: 18px; text-align: center;">
+          Wybierz preferowany sposób kontaktu:
         </p>
-      </form>
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
+          <!-- WhatsApp -->
+          <button onclick="bookViaWhatsApp()" style="flex: 1; min-width: 150px; background-color: #25D366; color: white; padding: 15px; border-radius: 15px; border: 2px solid #25D366; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease;">
+            <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
+            <span>WhatsApp</span>
+          </button>
+          
+          <!-- Email Formularz -->
+          <button onclick="showEmailForm()" style="flex: 1; min-width: 150px; background-color: #d4af37; color: #000; padding: 15px; border-radius: 15px; border: 2px solid #d4af37; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease;">
+            <i class="fas fa-envelope" style="font-size: 20px;"></i>
+            <span>Formularz</span>
+          </button>
+          
+          <!-- Telefon -->
+          <button onclick="window.location.href='tel:+48576054815'" style="flex: 1; min-width: 150px; background-color: #000; color: #d4af37; padding: 15px; border-radius: 15px; border: 2px solid #d4af37; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease;">
+            <i class="fas fa-phone" style="font-size: 20px;"></i>
+            <span>Telefon</span>
+          </button>
+        </div>
+        
+        <div style="text-align: center; color: #ddd; font-size: 14px;">
+          <p>📱 <strong>WhatsApp:</strong> Szybka odpowiedź, wyślij wiadomość od razu!</p>
+          <p>✉️ <strong>Formularz:</strong> Wysyłamy potwierdzenie na email</p>
+          <p>📞 <strong>Telefon:</strong> Zadzwoń bezpośrednio: 576 054 815</p>
+        </div>
+      </div>
+      
+      <div id="emailFormSection">
+        <form id="reservation-form">
+          <div class="form-grid">
+              <div class="form-group">
+                  <label for="name">Imię i nazwisko *</label>
+                  <i class="fas fa-user"></i> <input type="text" id="name" name="name" required placeholder="Twoje imię i nazwisko">
+              </div>
+              <div class="form-group">
+                  <label for="email">Email *</label>
+                  <i class="fas fa-envelope"></i> <input type="email" id="email" name="email" required placeholder="Twój adres email">
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <i class="fas fa-phone"></i> <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" title="Proszę podać 9 cyfr" required placeholder="123456789">
+          </div>
+          <div class="form-group">
+            <label for="service">Usługa *</label>
+            <i class="fas fa-star"></i> <select id="service" name="service" required>
+              <option value="">Wybierz usługę</option>
+              <option value="styl-klasyczny-1:1">Styl klasyczny 1:1 - 120 zł</option>
+              <option value="efekt-objetosci-2-3d">Efekt objętości 2-3D - 140 zł</option>
+              <option value="volume-3d">Volume 3D - 150 zł</option>
+              <option value="mega-volume-4-5d">Mega Volume 4-5D - 170 zł</option>
+              <option value="mega-volume-premium">Mega Volume Premium - 210 zł</option>
+              <option value="konsultacja">Konsultacja - 50 zł</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Preferowana data</label>
+            <i class="fas fa-calendar-alt"></i> <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
+          </div>
+          <div class="form-group">
+            <label for="message">Dodatkowe uwagi</label>
+            <textarea id="message" name="message" placeholder="Dodatkowe informacje, alergie, preferencje..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Wyślij rezerwację
+          </button>
+          <p class="message success" id="form-success-message">
+            Dziękujemy! Twoja rezerwacja została wysłana. Skontaktujemy się wkrótce.
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -1738,6 +1774,19 @@
         }, 500);
       }, 1000);
     });
+
+    // ===== WHATSAPP FUNKCJE - ROZWIĄZANIE 5 =====
+    function bookViaWhatsApp() {
+      const phoneNumber = "576054815"; // Twój numer bez spacji i +
+      const defaultMessage = "Cześć Klaudia! 👋 Chciałabym umówić się na stylizację rzęs. Proszę o dostępne terminy. 😊";
+      
+      const whatsappUrl = `https://wa.me/48${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+    
+    function showEmailForm() {
+      document.getElementById('emailFormSection').scrollIntoView({behavior: 'smooth'});
+    }
 
     // Rotacja opinii
     (function() {
@@ -2096,8 +2145,9 @@
       if (message.includes('rezerwacj') || message.includes('umówić') || message.includes('zapisać')) {
         return `📅 REZERWACJA WIZYTY:\n\n` +
                `1. Wypełnij formularz na stronie\n` +
-               `2. Zadzwoń: +48 123 456 789\n` +
-               `3. Email: klaudiaganowska9@gmail.com\n\n` +
+               `2. Zadzwoń: +48 576 054 815\n` +
+               `3. Email: klaudiaganowska9@gmail.com\n` +
+               `4. WhatsApp: kliknij przycisk WhatsApp w formularzu!\n\n` +
                `Godziny otwarcia:\nPon-Pt: 9:00-18:00\nSobota: 10:00-16:00`;
       }
       
