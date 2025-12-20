@@ -372,6 +372,113 @@
       opacity: 1;
     }
 
+    /* === NOWA SEKCJA: WYKONANE PRACE Z ROZWIJANYMI GALERIAMI === */
+    .works-container {
+      max-width: 800px;
+      margin: 50px auto 0;
+    }
+
+    .work-item {
+      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+      border-radius: 15px;
+      border: 1px solid #d4af37;
+      margin-bottom: 25px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .work-item:hover {
+      border-color: #f0c857;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(212,175,55,0.2);
+    }
+
+    .work-item details {
+      width: 100%;
+    }
+
+    .work-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .work-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .work-summary {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .work-main-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      border: 2px solid #d4af37;
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .work-summary:hover .work-main-photo {
+      transform: scale(1.05);
+    }
+
+    .work-info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .work-info h3 {
+      color: #f0e6b2;
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .work-info p {
+      color: #d4af37;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .work-gallery {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid #333;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .gallery-photo {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      border: 1px solid #d4af37;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-photo:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+    }
+
     .reviews-section {
       background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
       padding: 80px 20px;
@@ -592,6 +699,38 @@
         order: -1; /* Wyróżnione zdjęcie na górze na mobile */
       }
       
+      /* Responsywność dla nowej sekcji Wykonane Prace */
+      .work-summary {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+      }
+      
+      .work-main-photo {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .work-info {
+        text-align: center;
+      }
+      
+      .work-info h3 {
+        font-size: 18px;
+      }
+      
+      .work-info p {
+        font-size: 14px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-photo {
+        height: 150px;
+      }
+      
       /* === POPRAWIONA NAWIGACJA DLA TELEFONÓW === */
       .hamburger {
         display: flex;
@@ -642,6 +781,10 @@
       .form-group label { font-size: 14px; }
       .form-group select { background-position: right 8px center; padding-right: 30px; background-size: 10px; }
       .submit-btn { font-size: 14px; padding: 10px; }
+      .work-main-photo {
+        width: 100px;
+        height: 100px;
+      }
     }
 
     @media (min-width: 1200px) {
@@ -1307,24 +1450,48 @@
       </div>
     </div>
   </div>
-</section> 
-  <section style="padding: 60px 20px; text-align: center; background: #000;">
+</section>
+
+<!-- NOWA SEKCJA: WYKONANE PRACE Z ROZWIJANYMI GALERIAMI -->
+<section class="photo-gallery" id="works">
+  <div class="gallery-container">
     <div class="gold-line"></div>
-    <h2 style="color: #f0e6b2;">Wykonane Prace</h2>
+    <h2>Wykonane Prace</h2>
     
-    <details style="margin: 20px auto; max-width: 800px;">
-        <summary style="list-style: none; cursor: pointer;">
-            <img src="https://i.ibb.co/gbVrWdfn/Messenger-creation-C6080-E5-B-3-F25-487-D-A247-E8-CFB308-D40-A.jpg" 
-                 alt="Realizacja" 
-                 style="width: 100%; max-width: 400px; border-radius: 10px; border: 2px solid #d4af37;">
-        </summary>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 20px;">
-            <img src="https://i.ibb.co/gbVrWdfn/Messenger-creation-C6080-E5-B-3-F25-487-D-A247-E8-CFB308-D40-A.jpg" alt="Zdjęcie 1" style="width: 100%; border-radius: 5px;">
-            <img src="https://i.ibb.co/qYr4swSF/Messenger-creation-425-B32-EF-C356-4-CC0-9-BFA-17-F5399-A64-B0.jpg" alt="Zdjęcie 2" style="width: 100%; border-radius: 5px;">
-            <img src="https://i.ibb.co/spJfq8df/Messenger-creation-048684-BD-B552-47-DF-9-B31-42-CDFE3471-B2.jpg" alt="Zdjęcie 3" style="width: 100%; border-radius: 5px;">
-        </div>
-    </details>
-</section>  
+    <div class="works-container">
+      <!-- Realizacja 1 -->
+      <div class="work-item">
+        <details>
+          <summary>
+            <div class="work-summary">
+              <img src="https://i.ibb.co/gbVrWdfn/Messenger-creation-C6080-E5-B-3-F25-487-D-A247-E8-CFB308-D40-A.jpg" 
+                   alt="Stylizacja klasyczna 1:1" 
+                   class="work-main-photo">
+              <div class="work-info">
+                <h3>Stylizacja klasyczna 1:1</h3>
+                <p>Efekt naturalny • Czas: 2h</p>
+              </div>
+            </div>
+          </summary>
+          <div class="work-gallery">
+            <div class="gallery-grid">
+              <img src="https://i.ibb.co/gbVrWdfn/Messenger-creation-C6080-E5-B-3-F25-487-D-A247-E8-CFB308-D40-A.jpg" 
+                   alt="Widok z przodu" 
+                   class="gallery-photo">
+              <img src="https://i.ibb.co/qYr4swSF/Messenger-creation-425-B32-EF-C356-4-CC0-9-BFA-17-F5399-A64-B0.jpg" 
+                   alt="Widok z boku" 
+                   class="gallery-photo">
+              <img src="https://i.ibb.co/spJfq8df/Messenger-creation-048684-BD-B552-47-DF-9-B31-42-CDFE3471-B2.jpg" 
+                   alt="Zbliżenie" 
+                   class="gallery-photo">
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+  
  <!-- ZAKTUALIZOWANY CENNIK -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-container">
@@ -1766,8 +1933,8 @@
       </div>
     </div>
     <div class="quick-questions">
-      <div class="quick-question" onclick="askQuickQuestion('Jak dbać o przedłużone rzęsy?')">💅 Pielęgnacja</div>
-      <div class="quick-question" onclick="askQuickQuestion('Mam alergię - czy mogę zrobić rzęsy?')">🤧 Alergie</div>
+      <div class="quick-question" onclick="askQuickQuestion('Jak dbać o przedłużone rzęs?')">💅 Pielęgnacja</div>
+      <div class="quick-question" onclick="askQuickQuestion('Mam alergię - czy mogę zrobić rzęs?')">🤧 Alergie</div>
       <div class="quick-question" onclick="askQuickQuestion('Czy mogę używać tuszu do rzęs?')">💄 Makijaż</div>
       <div class="quick-question" onclick="askQuickQuestion('Kiedy trzeba zrobić uzupełnienie?')">🔄 Uzupełnienie</div>
       <div class="quick-question" onclick="askQuickQuestion('Jaka jest różnica między stylami?')">🎨 Style rzęs</div>
